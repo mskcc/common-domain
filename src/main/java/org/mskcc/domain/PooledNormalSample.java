@@ -1,5 +1,6 @@
 package org.mskcc.domain;
 
+
 import org.mskcc.util.Constants;
 
 import java.util.Arrays;
@@ -14,13 +15,13 @@ public class PooledNormalSample extends Sample {
 
     @Override
     public boolean isValid() {
-        return !getProperties().get(Constants.CAPTURE_BAIT_SET).contains(",");
+        return !getProperties().containsKey(Constants.CAPTURE_BAIT_SET) || !getProperties().get(Constants.CAPTURE_BAIT_SET).contains(",");
     }
 
     @Override
     public Set<Run> getValidRuns() {
         return runs.values().stream()
-                .filter(r -> Run.getAllRuns(Run::isPassed).contains(r)).collect(Collectors.toSet());
+                .filter(r -> Run.getAllRuns(Run::isPassed).contains(r) || r.isValid()).collect(Collectors.toSet());
     }
 
     @Override

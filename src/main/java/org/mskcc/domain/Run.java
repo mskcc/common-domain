@@ -21,6 +21,7 @@ public class Run {
     private long recordId;
     private int numberOfReads;
     private String note = "";
+    private boolean valid;
 
     private Predicate<Run> passedRunPredicate = new PassedRunPredicate();
     private Predicate<Run> sampleQcPredicate = new SampleQcPassedPredicate();
@@ -151,5 +152,13 @@ public class Run {
 
     public boolean isPostQcPassed() {
         return postQcPredicate.test(this);
+    }
+
+    public boolean isValid() {
+        return valid;
+    }
+
+    public void setValid(boolean valid) {
+        this.valid = valid;
     }
 }

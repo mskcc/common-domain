@@ -1,11 +1,10 @@
 package org.mskcc.domain;
 
+
 import org.mskcc.util.Constants;
 
 import java.util.*;
-import java.util.function.Function;
 import java.util.function.Predicate;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class Request {
@@ -243,15 +242,15 @@ public class Request {
     }
 
     public Sample getOrCreate(String igoSampleId) {
-        if(samples.containsKey(igoSampleId))
+        if (samples.containsKey(igoSampleId))
             return samples.get(igoSampleId);
         return new Sample(igoSampleId);
     }
 
-    public Sample getOrCreatePooledNormal(String igoNormalId) {
-        if(samples.containsKey(igoNormalId))
-            return samples.get(igoNormalId);
-        return new PooledNormalSample(igoNormalId);
+    public Sample putPooledNormalIfAbsent(String igoNormalId) {
+        if (!samples.containsKey(igoNormalId))
+            samples.put(igoNormalId, new PooledNormalSample(igoNormalId));
+        return samples.get(igoNormalId);
     }
 
 
@@ -293,7 +292,7 @@ public class Request {
     }
 
     public void putSampleIfAbsent(Sample sample) {
-        if(!samples.containsKey(sample.getIgoId()))
+        if (!samples.containsKey(sample.getIgoId()))
             samples.put(sample.getIgoId(), sample);
     }
 

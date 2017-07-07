@@ -194,10 +194,6 @@ public class Sample {
         return isTumor;
     }
 
-    public void setTumor(boolean isTumor) {
-        this.isTumor = isTumor;
-    }
-
     public Run putRunIfAbsent(Run run) {
         if(!runs.containsKey(run.getId()))
             runs.put(run.getId(), run);
