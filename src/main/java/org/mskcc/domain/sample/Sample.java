@@ -1,5 +1,10 @@
-package org.mskcc.domain;
+package org.mskcc.domain.sample;
 
+import org.mskcc.domain.Protocol;
+import org.mskcc.domain.Recipe;
+import org.mskcc.domain.Run;
+import org.mskcc.domain.Strand;
+import org.mskcc.util.CommonUtils;
 import org.mskcc.util.Constants;
 
 import java.util.*;
@@ -8,9 +13,9 @@ import java.util.stream.Collectors;
 
 public class Sample {
     private final String igoId;
-    Map<String, Run> runs = new LinkedHashMap<>();
+    private Map<String, Run> runs = new LinkedHashMap<>();
     private Sample pairing;
-    String cmoSampleId = Constants.UNDEFINED;
+    private String cmoSampleId = Constants.UNDEFINED;
     private final Predicate<Sample> validSamplePredicate;
     private int numberOfReads;
     private String alias = "";
@@ -21,6 +26,11 @@ public class Sample {
     private boolean isTumor;
     private Recipe recipe;
     private String requestId;
+    private CmoSampleInfo cmoSampleInfo = new CmoSampleInfo();
+    private String sampleClass;
+    private TumorNormalType tumorNormalType;
+    private Set<Strand> strands = new HashSet<>();
+    private Set<Protocol> protocols = new HashSet<>();
 
     public Sample(String igoId) {
         this(igoId, new ValidSamplePredicate());
@@ -53,6 +63,10 @@ public class Sample {
 
     public void setProperties(Map<String, String> properties) {
         this.properties = properties;
+    }
+
+    public Set<Protocol> getProtocols() {
+        return protocols;
     }
 
     public String get(String key) {
@@ -100,12 +114,12 @@ public class Sample {
         runs.put(run.getId(), run);
     }
 
-    public Collection<Run> getRuns() {
+    public Map<String, Run> getRuns() {
         return getRuns(r -> true);
     }
 
-    public Collection<Run> getRuns(Predicate<Run> runPredicate) {
-        return runs.values().stream().filter(runPredicate).collect(Collectors.toSet());
+    public Map<String, Run> getRuns(Predicate<Run> runPredicate) {
+        return runs.entrySet().stream().filter(e -> runPredicate.test(e.getValue())).collect(CommonUtils.getLinkedHashMapCollector());
     }
 
     public boolean containsRun(String id) {
@@ -214,5 +228,41 @@ public class Sample {
 
     public String getRequestId() {
         return requestId;
+    }
+
+    public CmoSampleInfo getCmoSampleInfo() {
+        return cmoSampleInfo;
+    }
+
+    public void setCmoSampleInfo(CmoSampleInfo cmoSampleInfo) {
+        this.cmoSampleInfo = cmoSampleInfo;
+    }
+
+    public void setSampleClass(String sampleClass) {
+        this.sampleClass = sampleClass;
+    }
+
+    public String getSampleClass() {
+        return sampleClass;
+    }
+
+    public void setTumorNormalType(TumorNormalType tumorNormalType) {
+        this.tumorNormalType = tumorNormalType;
+    }
+
+    public TumorNormalType getTumorNormalType() {
+        return tumorNormalType;
+    }
+
+    public Set<Strand> getStrands() {
+        return strands;
+    }
+
+    public void addProtocol(Protocol protocol) {
+        protocols.add(protocol);
+    }
+
+    public void addStrand(Strand strand) {
+        strands.add(strand);
     }
 }

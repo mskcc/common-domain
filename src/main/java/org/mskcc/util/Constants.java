@@ -87,6 +87,7 @@ public class Constants {
     public static final int MINIMUM_NUMBER_OF_READS = 1000000;
     public static final String TEST_PROFILE = "test";
     public static final String UNDEFINED = "undefined";
+    public static final int MAX_HEADER_SIZE = 26;
 
     public static class Manifest {
         public static final String SAMPLE_INFO = "SampleInfo";

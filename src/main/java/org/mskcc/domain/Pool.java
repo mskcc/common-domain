@@ -1,6 +1,9 @@
 package org.mskcc.domain;
 
+import org.mskcc.domain.sample.Sample;
+
 import java.util.LinkedHashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class Pool extends Sample {
@@ -20,6 +23,7 @@ public class Pool extends Sample {
 
     @Override
     public Run putRunIfAbsent(String runID) {
+        Map<String, Run> runs = getRuns();
         if (!runs.containsKey(runID)) {
             Run run = new Run(runID);
             runs.put(runID, run);
