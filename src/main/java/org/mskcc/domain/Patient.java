@@ -1,5 +1,7 @@
 package org.mskcc.domain;
 
+import org.mskcc.domain.sample.Sample;
+
 import java.util.LinkedHashSet;
 import java.util.Set;
 

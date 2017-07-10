@@ -58,4 +58,7 @@ public class VeloxConstants {
     public static final String TRUE = "true";
     public static final String SPECIES = "Species";
     public static final String SPECIMEN_TYPE = "SpecimenType";
+    public static final String CMO_SAMPLE_CLASS = "CMOSampleClass";
+    public static final String TUMOR_OR_NORMAL = "TumorOrNormal";
+    public static final String SAMPLE_CMO_INFO_RECORDS = "SampleCMOInfoRecords";
 }
