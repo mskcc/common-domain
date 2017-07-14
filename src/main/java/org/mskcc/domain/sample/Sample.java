@@ -115,7 +115,7 @@ public class Sample {
     }
 
     public Map<String, Run> getRuns() {
-        return getRuns(r -> true);
+        return runs;
     }
 
     public Map<String, Run> getRuns(Predicate<Run> runPredicate) {
