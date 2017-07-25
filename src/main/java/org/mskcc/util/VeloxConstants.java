@@ -61,4 +61,7 @@ public class VeloxConstants {
     public static final String CMO_SAMPLE_CLASS = "CMOSampleClass";
     public static final String TUMOR_OR_NORMAL = "TumorOrNormal";
     public static final String SAMPLE_CMO_INFO_RECORDS = "SampleCMOInfoRecords";
+    public static final String SAMPLE_SET = "SampleSet";
+    public static final String EXOME = "Exome";
+    public static final String EMAIL = "Email";
 }

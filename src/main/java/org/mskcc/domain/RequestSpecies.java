@@ -19,7 +19,8 @@ public enum RequestSpecies {
     SYNTHESIZED("Synthesized"),
     OWL("Owl"),
     SQUIRREL("Squirrel"),
-    OTHER("other");
+    OTHER("other"),
+    EMPTY("");
 
     private static final Map<String, RequestSpecies> nameToSpecies = new HashMap<>();
 

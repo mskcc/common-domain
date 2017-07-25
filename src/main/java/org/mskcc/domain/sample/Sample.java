@@ -70,7 +70,7 @@ public class Sample {
     }
 
     public String get(String key) {
-        return properties.get(key);
+        return properties.getOrDefault(key, "");
     }
 
     public void put(String key, String value) {

@@ -3,6 +3,7 @@ package org.mskcc.domain;
 
 import org.mskcc.domain.sample.PooledNormalSample;
 import org.mskcc.domain.sample.Sample;
+import org.mskcc.util.CommonUtils;
 import org.mskcc.util.Constants;
 
 import java.util.*;
@@ -20,16 +21,15 @@ public class Request {
     private boolean manualDemux;
     private String name;
     private List<Recipe> recipe = new ArrayList<>();
-    private String requestName;
     private boolean bicAutorunnable;
     private String readmeInfo;
     private int runNumber;
     private String extraReadMeInfo = "";
-    private RequestSpecies species;
+    private RequestSpecies species = RequestSpecies.EMPTY;
     private Set<String> runIdList = new TreeSet<>();
     private String pi;
     private String invest;
-    private List<String> ampType = new LinkedList<>();
+    private Set<String> ampType = new LinkedHashSet<>();
     private String baitVersion = Constants.EMPTY;
     private Map<String, String> projectInfo = new LinkedHashMap<>();
     private Map<String, Patient> patients = new LinkedHashMap<>();
@@ -53,7 +53,7 @@ public class Request {
     public Map<String, Sample> getSamples(Predicate<Sample> samplePredicate) {
         return samples.entrySet().stream()
                 .filter(s -> samplePredicate.test(s.getValue()))
-                .collect(Collectors.toMap(s -> s.getKey(), s -> s.getValue()));
+                .collect(CommonUtils.getLinkedHashMapCollector());
     }
 
     public Map<String, Pool> getPools() {
@@ -120,14 +120,6 @@ public class Request {
         this.recipe = recipe;
     }
 
-    public String getRequestName() {
-        return requestName;
-    }
-
-    public void setRequestName(String requestName) {
-        this.requestName = requestName;
-    }
-
     public boolean isBicAutorunnable() {
         return bicAutorunnable;
     }
@@ -144,7 +136,7 @@ public class Request {
         this.readmeInfo = readmeInfo;
     }
 
-    public void addRunIDlist(String runIDFull) {
+    public void addRunID(String runIDFull) {
         runIdList.add(runIDFull);
     }
 
@@ -195,11 +187,11 @@ public class Request {
         this.species = species;
     }
 
-    public List<String> getAmpType() {
+    public Set<String> getAmpType() {
         return ampType;
     }
 
-    public void setAmpType(List<String> ampType) {
+    public void setAmpType(Set<String> ampType) {
         this.ampType = ampType;
     }
 
@@ -228,6 +220,12 @@ public class Request {
     public Patient putPatientIfAbsent(String patientId) {
         if (!patients.containsKey(patientId))
             patients.put(patientId, new Patient(patientId));
+        return patients.get(patientId);
+    }
+
+    public Patient putPatientIfAbsent(Patient patient) {
+        String patientId = patient.getPatientId();
+        patients.putIfAbsent(patientId, patient);
         return patients.get(patientId);
     }
 
@@ -300,5 +298,9 @@ public class Request {
 
     public List<Recipe> getSamplesRecipes() {
         return samples.values().stream().map(s -> s.getRecipe()).collect(Collectors.toList());
+    }
+
+    public void putPoolIfAbsent(Pool pool) {
+        pools.put(pool.getIgoId(), pool);
     }
 }
