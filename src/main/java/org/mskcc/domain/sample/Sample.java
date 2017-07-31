@@ -1,9 +1,8 @@
 package org.mskcc.domain.sample;
 
-import org.mskcc.domain.Protocol;
-import org.mskcc.domain.Recipe;
-import org.mskcc.domain.Run;
-import org.mskcc.domain.Strand;
+import com.google.common.collect.LinkedListMultimap;
+import com.google.common.collect.Multimap;
+import org.mskcc.domain.*;
 import org.mskcc.util.CommonUtils;
 import org.mskcc.util.Constants;
 
@@ -13,10 +12,10 @@ import java.util.stream.Collectors;
 
 public class Sample {
     private final String igoId;
+    private final Predicate<Sample> validSamplePredicate;
     private Map<String, Run> runs = new LinkedHashMap<>();
     private Sample pairing;
     private String cmoSampleId = Constants.UNDEFINED;
-    private final Predicate<Sample> validSamplePredicate;
     private int numberOfReads;
     private String alias = "";
     private Map<String, String> properties = new LinkedHashMap<>();
@@ -30,7 +29,11 @@ public class Sample {
     private String sampleClass;
     private TumorNormalType tumorNormalType;
     private Set<Strand> strands = new HashSet<>();
-    private Set<Protocol> protocols = new HashSet<>();
+    private Set<ProtocolType> protocolTypes = new HashSet<>();
+    private List<KapaAgilentCaptureProtocol> kapaAgilentCaptureProtocols1 = new ArrayList<>();
+    private List<KapaAgilentCaptureProtocol> kapaAgilentCaptureProtocols2 = new ArrayList<>();
+    private List<NimbleGenHybProtocol> nimbleGenHybProtocols = new ArrayList<>();
+    private Multimap<String, Protocol> protocols = LinkedListMultimap.create();
 
     public Sample(String igoId) {
         this(igoId, new ValidSamplePredicate());
@@ -39,6 +42,10 @@ public class Sample {
     public Sample(String igoId, Predicate<Sample> validSamplePredicate) {
         this.igoId = igoId;
         this.validSamplePredicate = validSamplePredicate;
+    }
+
+    public Multimap<String, Protocol> getProtocols() {
+        return protocols;
     }
 
     public int getNumberOfReads() {
@@ -65,8 +72,8 @@ public class Sample {
         this.properties = properties;
     }
 
-    public Set<Protocol> getProtocols() {
-        return protocols;
+    public Set<ProtocolType> getProtocolTypes() {
+        return protocolTypes;
     }
 
     public String get(String key) {
@@ -214,20 +221,20 @@ public class Sample {
         return runs.get(run.getId());
     }
 
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
-    }
-
     public Recipe getRecipe() {
         return recipe;
     }
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
     }
 
     public String getRequestId() {
         return requestId;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
     }
 
     public CmoSampleInfo getCmoSampleInfo() {
@@ -238,31 +245,59 @@ public class Sample {
         this.cmoSampleInfo = cmoSampleInfo;
     }
 
-    public void setSampleClass(String sampleClass) {
-        this.sampleClass = sampleClass;
-    }
-
     public String getSampleClass() {
         return sampleClass;
     }
 
-    public void setTumorNormalType(TumorNormalType tumorNormalType) {
-        this.tumorNormalType = tumorNormalType;
+    public void setSampleClass(String sampleClass) {
+        this.sampleClass = sampleClass;
     }
 
     public TumorNormalType getTumorNormalType() {
         return tumorNormalType;
     }
 
+    public void setTumorNormalType(TumorNormalType tumorNormalType) {
+        this.tumorNormalType = tumorNormalType;
+    }
+
     public Set<Strand> getStrands() {
         return strands;
     }
 
-    public void addProtocol(Protocol protocol) {
-        protocols.add(protocol);
+    public void addProtocol(ProtocolType protocolType) {
+        protocolTypes.add(protocolType);
     }
 
     public void addStrand(Strand strand) {
         strands.add(strand);
+    }
+
+    public List<KapaAgilentCaptureProtocol> getKapaAgilentCaptureProtocols1() {
+        return kapaAgilentCaptureProtocols1;
+    }
+
+    public void setKapaAgilentCaptureProtocols1(List<KapaAgilentCaptureProtocol> kapaAgilentCaptureProtocols1) {
+        this.kapaAgilentCaptureProtocols1 = kapaAgilentCaptureProtocols1;
+    }
+
+    public List<KapaAgilentCaptureProtocol> getKapaAgilentCaptureProtocols2() {
+        return kapaAgilentCaptureProtocols2;
+    }
+
+    public void setKapaAgilentCaptureProtocols2(List<KapaAgilentCaptureProtocol> kapaAgilentCaptureProtocols2) {
+        this.kapaAgilentCaptureProtocols2 = kapaAgilentCaptureProtocols2;
+    }
+
+    public List<NimbleGenHybProtocol> getNimbleGenHybProtocols() {
+        return nimbleGenHybProtocols;
+    }
+
+    public void setNimbleGenHybProtocols(List<org.mskcc.domain.NimbleGenHybProtocol> nimbleGenHybProtocols) {
+        this.nimbleGenHybProtocols = nimbleGenHybProtocols;
+    }
+
+    public void addNimbleGenHybProtocol(NimbleGenHybProtocol nimbleGenHybProtocol) {
+        nimbleGenHybProtocols.add(nimbleGenHybProtocol);
     }
 }

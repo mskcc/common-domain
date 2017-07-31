@@ -64,4 +64,9 @@ public class VeloxConstants {
     public static final String SAMPLE_SET = "SampleSet";
     public static final String EXOME = "Exome";
     public static final String EMAIL = "Email";
+    public static final String VALIDATOR_CONFIGURATION = "ValidatorConfiguration";
+    public static final String NOTIFICATION_EMAIL_ADDRESS = "NotificationEmailAddress";
+    public static final String ELUTION_VOL = "ElutionVol";
+    public static final String DNA_LIBRARY_PREP_PROTOCOL_2 = "DNALibraryPrepProtocol2";
+    public static final String DNA_LIBRARY_PREP_PROTOCOL_3 = "DNALibraryPrepProtocol3";
 }

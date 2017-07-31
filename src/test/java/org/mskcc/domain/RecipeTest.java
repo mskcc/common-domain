@@ -1,31 +1,32 @@
 package org.mskcc.domain;
 
 import org.junit.Test;
+import org.mskcc.TestUtils;
 
 import java.util.Optional;
 
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.object.IsCompatibleType.typeCompatibleWith;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 public class RecipeTest {
     @Test
     public void whenRetrieveNullRecipe_shouldThrowUnsupportedRecipeException() {
-        Optional<Exception> exception = assertThrown(() -> Recipe.getRecipeByValue(null));
+        Optional<Exception> exception = TestUtils.assertThrown(() -> Recipe.getRecipeByValue(null));
         assertThat(exception.isPresent(), is(true));
-        assertThat(exception.get().getClass(), typeCompatibleWith(Recipe.UnsupportedRecipeException.class));
+        assertThat(exception.get().getClass(), typeCompatibleWith(Recipe.EmptyRecipeException.class));
     }
 
     @Test
     public void whenRetrieveEmptyRecipe_shouldThrowUnsupportedRecipeException() {
-        Optional<Exception> exception = assertThrown(() -> Recipe.getRecipeByValue(""));
+        Optional<Exception> exception = TestUtils.assertThrown(() -> Recipe.getRecipeByValue(""));
         assertThat(exception.isPresent(), is(true));
-        assertThat(exception.get().getClass(), typeCompatibleWith(Recipe.UnsupportedRecipeException.class));
+        assertThat(exception.get().getClass(), typeCompatibleWith(Recipe.EmptyRecipeException.class));
     }
 
     @Test
     public void whenRetrieveNotExistingRecipe_shouldThrowUnsupportedRecipeException() {
-        Optional<Exception> exception = assertThrown(() -> Recipe.getRecipeByValue("notExistingRecipe"));
+        Optional<Exception> exception = TestUtils.assertThrown(() -> Recipe.getRecipeByValue("notExistingRecipe"));
         assertThat(exception.isPresent(), is(true));
         assertThat(exception.get().getClass(), typeCompatibleWith(Recipe.UnsupportedRecipeException.class));
     }
@@ -35,14 +36,5 @@ public class RecipeTest {
         Recipe retrievedRecipe = Recipe.AMPLI_SEQ;
         Recipe recipe = Recipe.getRecipeByValue(retrievedRecipe.getValue());
         assertThat(recipe, is(retrievedRecipe));
-    }
-
-    private Optional<Exception> assertThrown(Runnable runnable) {
-        try {
-            runnable.run();
-            return Optional.empty();
-        } catch (Exception e) {
-            return Optional.of(e);
-        }
     }
 }

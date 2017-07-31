@@ -22,7 +22,6 @@ public class Constants {
     public static final String HUMAN_ABREV = "b37";
     public static final String IGO_ID = "IGO_ID";
     public static final String IGO_PROFILE = "igo";
-    public static final String IMPACT = "impact";
     public static final String INCLUDE_RUN_ID = "INCLUDE_RUN_ID";
     public static final String INCORRECT = "Incorrect";
     public static final String INVESTIGATOR_PATIENT_ID = "INVESTIGATOR_PATIENT_ID";
@@ -53,7 +52,6 @@ public class Constants {
     public static final String REQ_ID = "REQ_ID";
     public static final String REQUEST_05500 = "05500";
     public static final String REQUEST_NAME = "RequestName";
-    public static final String RNASEQ = "rnaseq";
     public static final String RUN_INFO_PATH = "argumentsInfo.txt";
     public static final String SAMPLE_CLASS = "SAMPLE_CLASS";
     public static final String SAMPLE_KEY = "SampleKey";
@@ -88,6 +86,7 @@ public class Constants {
     public static final String TEST_PROFILE = "test";
     public static final String UNDEFINED = "undefined";
     public static final int MAX_HEADER_SIZE = 26;
+    public static final String WES = "WES";
 
     public static class Manifest {
         public static final String SAMPLE_INFO = "SampleInfo";

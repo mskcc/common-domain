@@ -11,35 +11,36 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Request {
+    private final String id;
     private Map<String, Sample> samples = new LinkedHashMap<>();
     private Map<String, Pool> pools = new LinkedHashMap<>();
-    private String id;
     private Set<LibType> libTypes = new HashSet<>();
     private Set<Strand> strands = new HashSet<>();
-    private String requestType;
-    private String readMe;
+    private RequestType requestType;
+    private String readMe = "";
     private boolean manualDemux;
-    private String name;
+    private String name = "";
     private List<Recipe> recipe = new ArrayList<>();
     private boolean bicAutorunnable;
-    private String readmeInfo;
+    private String readmeInfo = "";
     private int runNumber;
     private String extraReadMeInfo = "";
-    private RequestSpecies species = RequestSpecies.EMPTY;
-    private Set<String> runIdList = new TreeSet<>();
-    private String pi;
-    private String invest;
-    private Set<String> ampType = new LinkedHashSet<>();
+    private RequestSpecies species;
+    private Set<String> runIds = new TreeSet<>();
+    private String pi = "";
+    private String invest = "";
+    private Set<String> ampTypes = new LinkedHashSet<>();
     private String baitVersion = Constants.EMPTY;
     private Map<String, String> projectInfo = new LinkedHashMap<>();
     private Map<String, Patient> patients = new LinkedHashMap<>();
+
 
     public Request(String id) {
         this.id = id;
     }
 
-    public Set<String> getRunIdList() {
-        return runIdList;
+    public Set<String> getRunIds() {
+        return runIds;
     }
 
     public Map<String, Sample> getSamples() {
@@ -64,11 +65,11 @@ public class Request {
         return id;
     }
 
-    public String getRequestType() {
+    public RequestType getRequestType() {
         return requestType;
     }
 
-    public void setRequestType(String requestType) {
+    public void setRequestType(RequestType requestType) {
         this.requestType = requestType;
     }
 
@@ -137,7 +138,11 @@ public class Request {
     }
 
     public void addRunID(String runIDFull) {
-        runIdList.add(runIDFull);
+        runIds.add(runIDFull);
+    }
+
+    public void addAmpType(String ampType) {
+        ampTypes.add(ampType);
     }
 
     public String getInvest() {
@@ -187,12 +192,12 @@ public class Request {
         this.species = species;
     }
 
-    public Set<String> getAmpType() {
-        return ampType;
+    public Set<String> getAmpTypes() {
+        return ampTypes;
     }
 
-    public void setAmpType(Set<String> ampType) {
-        this.ampType = ampType;
+    public void setAmpTypes(Set<String> ampTypes) {
+        this.ampTypes = ampTypes;
     }
 
     public String getBaitVersion() {
@@ -302,5 +307,9 @@ public class Request {
 
     public void putPoolIfAbsent(Pool pool) {
         pools.put(pool.getIgoId(), pool);
+    }
+
+    public void addProjectProperty(String propertyName, String value) {
+        projectInfo.put(propertyName, value);
     }
 }

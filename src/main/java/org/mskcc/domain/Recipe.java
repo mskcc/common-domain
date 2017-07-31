@@ -2,7 +2,6 @@ package org.mskcc.domain;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public enum Recipe {
     AMPLI_SEQ("AmpliSeq"),
@@ -55,10 +54,6 @@ public enum Recipe {
         }
     }
 
-    public String getValue() {
-        return value;
-    }
-
     private String value;
 
     Recipe(String value) {
@@ -67,12 +62,16 @@ public enum Recipe {
 
     public static Recipe getRecipeByValue(String value) {
         if(value == null || value.isEmpty())
-            throw new UnsupportedRecipeException("Empty Recipe");
+            throw new EmptyRecipeException("Empty recipe");
         String loweredValue = value.toLowerCase();
         if (!valueToRecipe.containsKey(loweredValue)) {
             throw new UnsupportedRecipeException(String.format("Unsupported recipe: %s", value));
         }
         return valueToRecipe.get(loweredValue);
+    }
+
+    public String getValue() {
+        return value;
     }
 
     public void setValue(String value) {
@@ -86,6 +85,12 @@ public enum Recipe {
 
     public static class UnsupportedRecipeException extends RuntimeException {
         public UnsupportedRecipeException(String message) {
+            super(message);
+        }
+    }
+
+    public static class EmptyRecipeException extends RuntimeException {
+        public EmptyRecipeException(String message) {
             super(message);
         }
     }
