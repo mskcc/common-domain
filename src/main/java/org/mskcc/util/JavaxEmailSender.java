@@ -4,26 +4,15 @@ import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
 import javax.mail.*;
-import javax.mail.internet.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import java.util.Date;
 import java.util.Properties;
 
-public class BasicMail {
-    public static void main(String[] args) {
-        BasicMail mail = new BasicMail();
-        try {
-            //mail.send("gabow@cbio.mskcc.org", "gabowa@mskcc.org,gabowa@mskcc.org", "cbio.mskcc.org", "Hello", "hi");
-            mail.send("kristakaz@cbio.mskcc.org", "kazmierk@mskcc.org", "cbio.mskcc.org", "Hello", "This does not have an attachment");
-
-            //mail.send("kristakaz@cbio.mskcc.org", "kazmierk@mskcc.org", "cbio.mskcc.org", "Hello2", "This does have an attachment", "/ifs/projects/BIC/drafts/Proj_06774_E/Proj_06774_E_sample_key.xlsx");
-
-            //mail.send("kristakaz@cbio.mskcc.org", "kazmierk@mskcc.org", "cbio.mskcc.org", "Hello3", "This has two attachments", "/ifs/projects/BIC/drafts/Proj_06774_E/Proj_06774_E_sample_mapping.txt,/ifs/projects/BIC/drafts/Proj_05514_H/Proj_05514_H_sample_key.xlsx");
-
-        } catch (Exception e) {
-            System.err.println("Whawha");
-        }
-    }
-
+public class JavaxEmailSender implements EmailSender {
+    @Override
     public void send(String from, String to, String host, String subject, String text) throws MessagingException {
         {
             Properties props = System.getProperties();
@@ -36,7 +25,6 @@ public class BasicMail {
             InternetAddress[] addresses = new InternetAddress[recipients.length];
 
             for (int i = 0; i < recipients.length; i++) {
-                // message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipients[i]));
                 addresses[i] = new InternetAddress(recipients[i]);
             }
             message.addRecipients(Message.RecipientType.TO, addresses);
@@ -48,8 +36,8 @@ public class BasicMail {
         }
     }
 
-    //This send will attach files to the email you are senidng
-    public void send(String from, String to, String host, String subject, String text, String files) throws MessagingException {
+    @Override
+    public void sendWithFiles(String from, String to, String host, String subject, String text, String files) throws MessagingException {
         {
             Properties props = System.getProperties();
             props.put("mail.smtp.host", host);
@@ -61,12 +49,10 @@ public class BasicMail {
             InternetAddress[] addresses = new InternetAddress[recipients.length];
 
             for (int i = 0; i < recipients.length; i++) {
-                // message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipients[i]));
                 addresses[i] = new InternetAddress(recipients[i]);
             }
             message.addRecipients(Message.RecipientType.TO, addresses);
             message.setSubject(subject);
-            //message.setText(text);
             // This is a multipart message, so create Multipart (message) and add the BodyParts
             Multipart multipart = new MimeMultipart();
             BodyPart messageParts = new MimeBodyPart();

@@ -34,13 +34,23 @@ public class Request {
     private Map<String, String> projectInfo = new LinkedHashMap<>();
     private Map<String, Patient> patients = new LinkedHashMap<>();
 
+    private boolean isInnovation;
 
     public Request(String id) {
         this.id = id;
+        isInnovation = id.startsWith(Constants.INNOVATION_PROJECT_ID);
     }
 
     public Set<String> getRunIds() {
         return runIds;
+    }
+
+    public boolean isInnovation() {
+        return isInnovation;
+    }
+
+    public void setInnovation(boolean innovation) {
+        isInnovation = innovation;
     }
 
     public Map<String, Sample> getSamples() {
@@ -54,6 +64,7 @@ public class Request {
     public Map<String, Sample> getSamples(Predicate<Sample> samplePredicate) {
         return samples.entrySet().stream()
                 .filter(s -> samplePredicate.test(s.getValue()))
+
                 .collect(CommonUtils.getLinkedHashMapCollector());
     }
 
@@ -240,10 +251,6 @@ public class Request {
 
     public void setProjectInfo(Map<String, String> projectInfo) {
         this.projectInfo = projectInfo;
-    }
-
-    public boolean isInnovationProject() {
-        return id.startsWith(Constants.INNOVATION_PROJECT_ID);
     }
 
     public Sample getOrCreate(String igoSampleId) {

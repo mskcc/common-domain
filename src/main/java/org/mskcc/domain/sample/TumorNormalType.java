@@ -22,7 +22,13 @@ public enum TumorNormalType {
 
     public static TumorNormalType getByValue(String value) {
         if(!valueToTumorNormalType.containsKey(value))
-            throw new RuntimeException(String.format("Unsupported Tumor/Normal type: %s", value));
+            throw new UnsupportedTumorNormalTypeException(String.format("Unsupported Tumor/Normal type: %s", value));
         return valueToTumorNormalType.get(value);
+    }
+
+    public static class UnsupportedTumorNormalTypeException extends RuntimeException {
+        public UnsupportedTumorNormalTypeException(String message) {
+            super(message);
+        }
     }
 }

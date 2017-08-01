@@ -87,6 +87,7 @@ public class Constants {
     public static final String UNDEFINED = "undefined";
     public static final int MAX_HEADER_SIZE = 26;
     public static final String WES = "WES";
+    public static final String PACT = "PACT";
 
     public static class Manifest {
         public static final String SAMPLE_INFO = "SampleInfo";
