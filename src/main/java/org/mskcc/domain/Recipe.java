@@ -42,6 +42,7 @@ public enum Recipe {
     SHALLOW_WGS("ShallowWGS"),
     SMARTER_AMP_SEQ("SMARTerAmpSeq"),
     SPO_11_OLIGO("Spo11Oligo"),
+    TCRSeq("TCRSeq"),
     WHOLE_EXOME_SEQUENCING("WholeExomeSequencing"),
     WHOLE_GENOME_BISULFATE_SEQUENCING("WholeGenomeBisulfateSequencing"),
     WHOLE_GENOME_SEQUENCING("WholeGenomeSequencing");
