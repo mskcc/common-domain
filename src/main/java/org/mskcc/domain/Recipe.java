@@ -20,6 +20,8 @@ public enum Recipe {
     HEME_PACT_V_3("HemePACT_v3"),
     HEME_PACT_V_4("HemePACT_v4"),
     IDT_Exome_v1("IDT_Exome_v1"),
+    IDT_Exome_v1_FP("IDT_Exome_v1_FP"),
+    IDT_Exome_v1_IMPACT468("IDT_Exome_v1_IMPACT468"),
     IMMUNO_SEQ("ImmunoSeq"),
     IMPACT_410("IMPACT410"),
     IMPACT_410_PLUS("IMPACT410+"),

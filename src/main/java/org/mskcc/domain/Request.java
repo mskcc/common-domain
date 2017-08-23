@@ -20,7 +20,7 @@ public class Request {
     private String readMe = "";
     private boolean manualDemux;
     private String name = "";
-    private List<Recipe> recipe = new ArrayList<>();
+    private Recipe recipe;
     private boolean bicAutorunnable;
     private String readmeInfo = "";
     private int runNumber;
@@ -124,11 +124,11 @@ public class Request {
         this.name = name;
     }
 
-    public List<Recipe> getRecipe() {
+    public Recipe getRecipe() {
         return recipe;
     }
 
-    public void setRecipe(List<Recipe> recipe) {
+    public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
     }
 
