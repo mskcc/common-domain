@@ -70,4 +70,5 @@ public class VeloxConstants {
     public static final String VALID = "Valid";
     public static final String VALIDATOR_CONFIGURATION = "ValidatorConfiguration";
     public static final String PRIME_REQUEST = "PrimeRequest";
+    public static final String BAIT_SET = "BaitSet";
 }

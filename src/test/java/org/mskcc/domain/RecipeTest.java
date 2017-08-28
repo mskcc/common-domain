@@ -1,7 +1,7 @@
 package org.mskcc.domain;
 
 import org.junit.Test;
-import org.mskcc.TestUtils;
+import org.mskcc.util.TestUtils;
 
 import java.util.Optional;
 
