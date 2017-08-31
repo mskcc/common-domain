@@ -1,5 +1,7 @@
 package org.mskcc.util;
 
+import com.google.common.base.Strings;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collector;
@@ -10,5 +12,17 @@ public class CommonUtils {
         return Collectors.toMap(p -> p.getKey(), p -> p.getValue(), (u, v) -> {
             throw new IllegalStateException(String.format("Duplicate key %s", u));
         }, LinkedHashMap::new);
+    }
+
+    public static String requireNonNullNorEmpty(String string, String message) {
+        if (Strings.isNullOrEmpty(string))
+            throw new NullOrEmptyException(message);
+        return string;
+    }
+
+    private static class NullOrEmptyException extends RuntimeException {
+        public NullOrEmptyException(String message) {
+            super(message);
+        }
     }
 }
