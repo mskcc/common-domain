@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum Recipe {
+    AGILENT_V_4_51_MB_HUMAN("Agilent_v4_51MB_Human"),
     AMPLI_SEQ("AmpliSeq"),
     AMPLICON_SEQ("AmpliconSeq"),
     ARCHER_FUSION_PLEX("ArcherFusionPlex"),

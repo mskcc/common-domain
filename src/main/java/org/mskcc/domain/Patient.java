@@ -16,6 +16,10 @@ public class Patient {
         groupNumber = count++;
     }
 
+    public static void resetGroupCounter() {
+        count = 0;
+    }
+
     public Set<Sample> getSamples() {
         return samples;
     }
@@ -34,5 +38,9 @@ public class Patient {
 
     public void addSample(Sample sample) {
         samples.add(sample);
+    }
+
+    public void addSamples(Set<Sample> samples) {
+        this.samples.addAll(samples);
     }
 }
