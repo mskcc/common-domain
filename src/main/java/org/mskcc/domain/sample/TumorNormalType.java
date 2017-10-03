@@ -26,6 +26,15 @@ public enum TumorNormalType {
         return valueToTumorNormalType.get(value);
     }
 
+    @Override
+    public String toString() {
+        return value;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
     public static class UnsupportedTumorNormalTypeException extends RuntimeException {
         public UnsupportedTumorNormalTypeException(String message) {
             super(message);

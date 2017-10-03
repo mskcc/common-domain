@@ -15,6 +15,10 @@ public class Protocol {
         this.protocolFields = protocolFields;
     }
 
+    public void put(String fieldName, Object value) {
+        protocolFields.putIfAbsent(fieldName, value);
+    }
+
     public Object getField(String name) {
         return protocolFields.get(name);
     }
@@ -25,5 +29,9 @@ public class Protocol {
 
     public Boolean isValid() {
         return valid;
+    }
+
+    public boolean containsField(String name) {
+        return protocolFields.containsKey(name);
     }
 }

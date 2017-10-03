@@ -269,6 +269,10 @@ public class Sample {
         protocolTypes.add(protocolType);
     }
 
+    public void addProtocol(String name, Protocol protocol) {
+        protocols.put(name, protocol);
+    }
+
     public void addStrand(Strand strand) {
         strands.add(strand);
     }
