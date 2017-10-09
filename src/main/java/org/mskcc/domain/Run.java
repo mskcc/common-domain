@@ -29,7 +29,6 @@ public class Run {
 
     public Run(String id) {
         this.id = id;
-        //@TODO change it to avoid reference leak
     }
 
     public static void addRun(Run run) {

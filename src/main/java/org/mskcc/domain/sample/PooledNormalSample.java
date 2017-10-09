@@ -27,7 +27,11 @@ public class PooledNormalSample extends Sample {
 
     @Override
     public Set<String> getValidRunIds() {
-        Set<String> includeRunIds = Arrays.stream(get(Constants.INCLUDE_RUN_ID).split(";")).filter(r -> !"".equals(r)).collect(Collectors.toSet());
+        Set<String> includeRunIds = Arrays.stream(get(Constants.INCLUDE_RUN_ID).split(";"))
+                .filter(r -> !"".equals(r))
+                .collect(Collectors.toSet());
+
+        includeRunIds.addAll(getRuns(run -> run.isValid()).keySet());
         return includeRunIds;
     }
 
