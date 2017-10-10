@@ -2,6 +2,7 @@ package org.mskcc.domain.sample;
 
 import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.Multimap;
+import org.apache.commons.lang3.StringUtils;
 import org.mskcc.domain.*;
 import org.mskcc.util.CommonUtils;
 import org.mskcc.util.Constants;
@@ -11,6 +12,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Sample {
+    private static Sample notAvailableSample = new NotAvailableSample();
     private final String igoId;
     private final Predicate<Sample> validSamplePredicate;
     private Map<String, Run> runs = new LinkedHashMap<>();
@@ -34,9 +36,20 @@ public class Sample {
     private List<KapaAgilentCaptureProtocol> kapaAgilentCaptureProtocols2 = new ArrayList<>();
     private List<NimbleGenHybProtocol> nimbleGenHybProtocols = new ArrayList<>();
     private Multimap<String, Protocol> protocols = LinkedListMultimap.create();
+    private Request request;
+    private String parentRequestId;
+    private String seqName;
 
     public Sample(String igoId) {
         this(igoId, new ValidSamplePredicate());
+    }
+
+    public Request getRequest() {
+        return request;
+    }
+
+    public void setRequest(Request request) {
+        this.request = request;
     }
 
     public Sample(String igoId, Predicate<Sample> validSamplePredicate) {
@@ -153,12 +166,8 @@ public class Sample {
     }
 
     public Run putRunIfAbsent(String runID) {
-        if (!runs.containsKey(runID)) {
-            Run run = new Run(runID);
-            runs.put(runID, run);
-            Run.addRun(run);
-        }
-        return runs.get(runID);
+        return putRunIfAbsent(new Run(runID));
+
     }
 
     public Set<Run> getBadRuns() {
@@ -216,8 +225,11 @@ public class Sample {
     }
 
     public Run putRunIfAbsent(Run run) {
-        if(!runs.containsKey(run.getId()))
+        if (!runs.containsKey(run.getId())) {
             runs.put(run.getId(), run);
+            Run.addRun(run);
+        }
+
         return runs.get(run.getId());
     }
 
@@ -304,4 +316,29 @@ public class Sample {
     public void addNimbleGenHybProtocol(NimbleGenHybProtocol nimbleGenHybProtocol) {
         nimbleGenHybProtocols.add(nimbleGenHybProtocol);
     }
+
+    public void setParentRequestId(String parentRequestId) {
+        this.parentRequestId = parentRequestId;
+    }
+
+    public String getParentRequestId() {
+        return parentRequestId;
+    }
+
+    public boolean hasParentRequest() {
+        return !StringUtils.isEmpty(parentRequestId);
+    }
+
+    public void setSeqName(String seqName) {
+        this.seqName = seqName;
+    }
+
+    public String getSeqName() {
+        return seqName;
+    }
+
+    public static Sample getNotAvailableSample() {
+        return notAvailableSample;
+    }
+
 }

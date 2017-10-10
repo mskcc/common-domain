@@ -181,9 +181,7 @@ public class Request {
     }
 
     public Sample putSampleIfAbsent(String igoSampleId) {
-        if (!samples.containsKey(igoSampleId))
-            samples.put(igoSampleId, new Sample(igoSampleId));
-        return samples.get(igoSampleId);
+        return putSampleIfAbsent(new Sample(igoSampleId));
     }
 
     public String getExtraReadMeInfo() {
@@ -224,8 +222,7 @@ public class Request {
     }
 
     public Pool putPoolIfAbsent(String poolIgoId) {
-        if (!pools.containsKey(poolIgoId))
-            pools.put(poolIgoId, new Pool(poolIgoId));
+        pools.putIfAbsent(poolIgoId, new Pool(poolIgoId));
         return pools.get(poolIgoId);
     }
 
@@ -234,8 +231,7 @@ public class Request {
     }
 
     public Patient putPatientIfAbsent(String patientId) {
-        if (!patients.containsKey(patientId))
-            patients.put(patientId, new Patient(patientId));
+        patients.putIfAbsent(patientId, new Patient(patientId));
         return patients.get(patientId);
     }
 
@@ -253,15 +249,8 @@ public class Request {
         this.projectInfo = projectInfo;
     }
 
-    public Sample getOrCreate(String igoSampleId) {
-        if (samples.containsKey(igoSampleId))
-            return samples.get(igoSampleId);
-        return new Sample(igoSampleId);
-    }
-
     public Sample putPooledNormalIfAbsent(String igoNormalId) {
-        if (!samples.containsKey(igoNormalId))
-            samples.put(igoNormalId, new PooledNormalSample(igoNormalId));
+        samples.putIfAbsent(igoNormalId, new PooledNormalSample(igoNormalId));
         return samples.get(igoNormalId);
     }
 
@@ -303,9 +292,9 @@ public class Request {
         return id != null ? id.hashCode() : 0;
     }
 
-    public void putSampleIfAbsent(Sample sample) {
-        if (!samples.containsKey(sample.getIgoId()))
-            samples.put(sample.getIgoId(), sample);
+    public Sample putSampleIfAbsent(Sample sample) {
+        samples.putIfAbsent(sample.getIgoId(), sample);
+        return samples.get(sample.getIgoId());
     }
 
     public List<Recipe> getSamplesRecipes() {
@@ -318,5 +307,12 @@ public class Request {
 
     public void addProjectProperty(String propertyName, String value) {
         projectInfo.put(propertyName, value);
+    }
+
+    public Sample getOrCreate(String igoSampleId) {
+        if(!samples.containsKey(igoSampleId))
+            return new Sample(igoSampleId);
+
+        return samples.get(igoSampleId);
     }
 }
