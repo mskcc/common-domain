@@ -166,12 +166,8 @@ public class Sample {
     }
 
     public Run putRunIfAbsent(String runID) {
-        if (!runs.containsKey(runID)) {
-            Run run = new Run(runID);
-            runs.put(runID, run);
-            Run.addRun(run);
-        }
-        return runs.get(runID);
+        return putRunIfAbsent(new Run(runID));
+
     }
 
     public Set<Run> getBadRuns() {
@@ -229,8 +225,11 @@ public class Sample {
     }
 
     public Run putRunIfAbsent(Run run) {
-        if(!runs.containsKey(run.getId()))
+        if (!runs.containsKey(run.getId())) {
             runs.put(run.getId(), run);
+            Run.addRun(run);
+        }
+
         return runs.get(run.getId());
     }
 
