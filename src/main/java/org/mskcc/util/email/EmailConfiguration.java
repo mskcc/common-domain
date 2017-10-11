@@ -1,4 +1,4 @@
-package org.mskcc.util;
+package org.mskcc.util.email;
 
 import java.util.List;
 
@@ -11,6 +11,15 @@ public class EmailConfiguration {
         this.recipients = recipients;
         this.from = from;
         this.host = host;
+    }
+
+    @Override
+    public String toString() {
+        return "EmailConfiguration{" +
+                "recipients=" + recipients +
+                ", from='" + from + '\'' +
+                ", host='" + host + '\'' +
+                '}';
     }
 
     public List<String> getRecipients() {
