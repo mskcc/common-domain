@@ -54,6 +54,7 @@ public class Constants {
     public static final String OTHER = "other";
     public static final String OVERRIDE_BAIT_SET = "OVERRIDE_BAIT_SET";
     public static final String PACT = "PACT";
+    public static final String PAIRED_FILE_SUFFIX = "_R2_001.fastq.gz";
     public static final String PAIRING_INFO = "PairingInfo";
     public static final String PASSED = "Passed";
     public static final String PATIENT = "patient";
