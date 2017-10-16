@@ -1,19 +1,18 @@
 package org.mskcc.util.email;
 
-import com.sun.mail.imap.IMAPMessage;
 import org.junit.Test;
 import org.mskcc.util.email.formatter.FileGenerationFailureEmailFormatter;
 
 import javax.mail.Address;
-import javax.mail.Session;
-import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
 
 public class EmailToMimeMessageConverterTest {
     private EmailToMimeMessageConverter emailToMimeMessageConverter = new EmailToMimeMessageConverter();
@@ -29,10 +28,11 @@ public class EmailToMimeMessageConverterTest {
 
         MimeMessage mimeMessage = emailToMimeMessageConverter.convert(email);
 
-        assertThat(mimeMessage.getFrom(), is(new InternetAddress(email.getFrom())));
+        assertThat(mimeMessage.getFrom().length, is(1));
+        assertThat(mimeMessage.getFrom()[0], is(new InternetAddress(email.getFrom())));
         assertThat(mimeMessage.getSubject(), is(email.getSubject()));
         assertThat(mimeMessage.getContent(), is(fileGenerationFailureEmailFormatter.format(email)));
-        assertThat(mimeMessage.getAllRecipients().length, is(0));
+        assertNull(mimeMessage.getAllRecipients());
     }
 
     @Test
@@ -45,7 +45,8 @@ public class EmailToMimeMessageConverterTest {
 
         MimeMessage mimeMessage = emailToMimeMessageConverter.convert(email);
 
-        assertThat(mimeMessage.getFrom(), is(new InternetAddress(email.getFrom())));
+        assertThat(mimeMessage.getFrom().length, is(1));
+        assertThat(mimeMessage.getFrom()[0], is(new InternetAddress(email.getFrom())));
         assertThat(mimeMessage.getSubject(), is(email.getSubject()));
         assertThat(mimeMessage.getContent(), is(fileGenerationFailureEmailFormatter.format(email)));
 
