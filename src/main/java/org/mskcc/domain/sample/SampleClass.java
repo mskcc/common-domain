@@ -1,5 +1,7 @@
 package org.mskcc.domain.sample;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,12 +31,20 @@ public enum SampleClass {
     }
 
     public static SampleClass fromValue(String value) {
+        if (StringUtils.isEmpty(value))
+            throw new IllegalArgumentException("Sample Class is empty");
         if (!valueToSampleClass.containsKey(value))
             throw new RuntimeException(String.format("Unsupported Sample Class: %s", value));
         return valueToSampleClass.get(value);
     }
 
     public String getValue() {
+        return value;
+    }
+
+
+    @Override
+    public String toString() {
         return value;
     }
 }

@@ -1,5 +1,7 @@
 package org.mskcc.util.email;
 
+import org.mskcc.util.notificator.Notificator;
+
 import javax.mail.MessagingException;
 
 public abstract class EmailNotificator implements Notificator {

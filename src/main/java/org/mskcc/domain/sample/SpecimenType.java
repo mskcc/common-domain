@@ -1,5 +1,7 @@
 package org.mskcc.domain.sample;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,12 +35,20 @@ public enum SpecimenType {
     }
 
     public static SpecimenType fromValue(String value) {
+        if (StringUtils.isEmpty(value))
+            throw new IllegalArgumentException("Speciment Type (CMO Sample Class) is empty");
         if (!valueToSpecimenType.containsKey(value))
             throw new RuntimeException(String.format("Unsupported Specimen Type: %s", value));
         return valueToSpecimenType.get(value);
     }
 
     public String getValue() {
+        return value;
+    }
+
+
+    @Override
+    public String toString() {
         return value;
     }
 }

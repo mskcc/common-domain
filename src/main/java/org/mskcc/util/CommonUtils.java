@@ -20,7 +20,7 @@ public class CommonUtils {
         return string;
     }
 
-    private static class NullOrEmptyException extends RuntimeException {
+    public static class NullOrEmptyException extends RuntimeException {
         public NullOrEmptyException(String message) {
             super(message);
         }

@@ -74,4 +74,5 @@ public class VeloxConstants {
     public static final String INSTRUMENT = "Instrument";
     public static final String INSTRUMENT_NAME = "InstrumentName";
     public static final String INSTRUMENT_TYPE = "InstrumentType";
+    public static final String SAMPLE_ORIGIN = "SampleOrigin";
 }
