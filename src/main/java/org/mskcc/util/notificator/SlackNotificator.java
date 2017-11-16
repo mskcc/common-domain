@@ -7,8 +7,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class SlackNotificator implements Notificator {
+    public static final String SLACK_RESPONSE_SUCCESS = "ok";
     private static final Logger LOGGER = Logger.getLogger(SlackNotificator.class);
-
     private final String webhookUrl;
     private final String channel;
     private final String user;
@@ -39,7 +39,14 @@ public class SlackNotificator implements Notificator {
             responseStrBuilder.append(line);
         }
 
-        LOGGER.info(String.format("Slack notification response: %s", responseStrBuilder.toString()));
+        String response = responseStrBuilder.toString();
+        if (!response.startsWith(SLACK_RESPONSE_SUCCESS)) {
+            String errorMessage = String.format("Slack notification not sent to channel: %s with message: %s. Cause: " +
+                            "%s",
+                    channel, message, response);
+            LOGGER.warn(errorMessage);
+            throw new SendingNotificationException(errorMessage);
+        }
     }
 
     private String getMessage(String message) {
@@ -51,4 +58,5 @@ public class SlackNotificator implements Notificator {
     public String getMessageSeparator() {
         return System.lineSeparator();
     }
+
 }

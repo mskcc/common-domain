@@ -20,6 +20,13 @@ public class CommonUtils {
         return string;
     }
 
+    public static void runAndCatchNpe(Runnable runnable) {
+        try {
+            runnable.run();
+        } catch (NullPointerException omitted) {
+        }
+    }
+
     public static class NullOrEmptyException extends RuntimeException {
         public NullOrEmptyException(String message) {
             super(message);

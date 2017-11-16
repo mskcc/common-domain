@@ -889,7 +889,7 @@ public class Sample {
         return cmoSampleInfo.getSampleOrigin();
     }
 
-    public String getCorrectedSpecimentType() {
+    public String getCorrectedSpecimenType() {
         return cmoSampleInfo.getSpecimenType();
     }
 

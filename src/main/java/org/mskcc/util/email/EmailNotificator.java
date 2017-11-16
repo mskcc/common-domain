@@ -1,6 +1,7 @@
 package org.mskcc.util.email;
 
 import org.mskcc.util.notificator.Notificator;
+import org.mskcc.util.notificator.SendingNotificationException;
 
 import javax.mail.MessagingException;
 
@@ -23,7 +24,7 @@ public abstract class EmailNotificator implements Notificator {
         try {
             emailSender.send(email);
         } catch (MessagingException e) {
-            throw new Exception(String.format("Unable to send email: %s", email), e);
+            throw new SendingNotificationException(String.format("Unable to send email: %s", email), e);
         }
     }
 

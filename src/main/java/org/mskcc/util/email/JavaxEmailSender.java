@@ -1,14 +1,13 @@
 package org.mskcc.util.email;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 
 import javax.mail.MessagingException;
 import javax.mail.Transport;
 import javax.mail.internet.MimeMessage;
 
 public class JavaxEmailSender implements EmailSender {
-    private static final Logger LOGGER = LoggerFactory.getLogger(JavaxEmailSender.class);
+    private static final Logger LOGGER = Logger.getLogger(JavaxEmailSender.class);
     private EmailToMimeMessageConverter emailToMimeMessageConverter;
 
     public JavaxEmailSender(EmailToMimeMessageConverter emailToMimeMessageConverter) {

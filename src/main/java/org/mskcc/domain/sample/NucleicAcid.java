@@ -1,6 +1,7 @@
 package org.mskcc.domain.sample;
 
 import org.apache.commons.lang3.StringUtils;
+import org.mskcc.util.CommonUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,7 +27,7 @@ public enum NucleicAcid {
 
     public static NucleicAcid fromValue(String value) {
         if (StringUtils.isEmpty(value))
-            throw new IllegalArgumentException("Nucleid Acid is empty");
+            throw new CommonUtils.NullOrEmptyException("Nucleid Acid is empty");
         if (!valueToNucleicAcid.containsKey(value))
             throw new RuntimeException(String.format("Unsupported Nucleic Acid: %s", value));
         return valueToNucleicAcid.get(value);
