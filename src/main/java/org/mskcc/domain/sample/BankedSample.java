@@ -1,5 +1,6 @@
 package org.mskcc.domain.sample;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class BankedSample {
@@ -50,11 +51,19 @@ public class BankedSample {
     public static final String RECORD_ID = "RecordId";
 
     private final String id;
-    private Map<String, Object> fields;
+    private Map<String, Object> fields = new HashMap<>();
+
+    public BankedSample(String id) {
+        this.id = id;
+    }
 
     public BankedSample(String id, Map<String, Object> fields) {
         this.id = id;
         this.fields = fields;
+    }
+
+    public Map<String, Object> getFields() {
+        return fields;
     }
 
     public String getCellCount() {

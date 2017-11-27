@@ -6,11 +6,30 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum SampleOrigin {
-    URINE("Urine"),
+    BLOCK("Block"),
+    BONE_MARROW_ASPIRATE("Bone Marrow Aspirate"),
+    BUCCAL_SWAB("Buccal Swab"),
+    BUFFY_COAT("Buffy Coat"),
+    CELL_PELLET("Cell Pellet"),
+    CELLS("Cells"),
     CEREBROSPINAL_FLUID("Cerebrospinal Fluid"),
+    CORE_BIOPSY("Core Biopsy"),
+    CURLS("Curls"),
+    CYTOSPIN("Cytospin"),
+    FINE_NEEDLE_ASPIRATE("Fine Needle Aspirate"),
+    FINGERNAILS("Fingernails"),
+    ORGANIOD("Organoid"),
+    OTHER("Other"),
     PLASMA("Plasma"),
-    WHOLE_BLOOD("Whole Blood"),
-    TISSUE("Tissue");
+    PUNCH("Punch"),
+    RAPID_AUTOPSY_TISSUE("Rapid Autopsy Tissue"),
+    SALIVA("Saliva"),
+    SLIDES("Slides"),
+    SORTED_CELLS("Sorted Cells"),
+    TISSUE("Tissue"),
+    URINE("Urine"),
+    VIABLY_FROZEN_CELLS("Viably Frozen Cells"),
+    WHOLE_BLOOD("Whole Blood");
 
     private static final Map<String, SampleOrigin> valueToSampleOrigin = new HashMap<>();
 
