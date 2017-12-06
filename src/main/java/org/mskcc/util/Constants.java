@@ -89,6 +89,8 @@ public class Constants {
     public static final String UNDER_REVIEW = "Under-Review";
     public static final String UNKNOWN = "Unknown";
     public static final String WES = "WES";
+    public static final String DNA_LIBRARY = "DNA Library";
+    public static final String RECEIVED = "Received";
 
     public static class Manifest {
         public static final String SAMPLE_INFO = "SampleInfo";

@@ -4,51 +4,54 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BankedSample {
-    public static final String DATA_TYPE_NAME = "BankedSample";
+    public static final String ASSAY = "Assay";
+    public static final String BARCODE_ID = "BarcodeId";
     public static final String CELL_COUNT = "CellCount";
-    public static final String SAMPLE_ORIGIN = "SampleOrigin";
-    public static final String SAMPLE_CLASS = "SampleClass";
-    public static final String ROW_INDEX = "RowIndex";
-    public static final String TRANSACTION_ID = "TransactionId";
-    public static final String SPECIES = "Species";
-    public static final String SAMPLE_TYPE = "SampleType";
-    public static final String REQUEST_ID = "RequestId";
-    public static final String INVESTIGATOR = "Investigator";
-    public static final String PROMOTED = "Promoted";
-    public static final String SERVICE_ID = "ServiceId";
-    public static final String USER_SAMPLE_ID = "UserSampleID";
-    public static final String ORGANISM = "Organism";
-    public static final String TUMOR_OR_NORMAL = "TumorOrNormal";
-    public static final String TUBE_BARCODE = "TubeBarcode";
-    public static final String PLATE_ID = "PlateId";
-    public static final String ROW_POSITION = "RowPosition";
+    public static final String CLINICAL_INFO = "ClinicalInfo";
     public static final String COL_POSITION = "ColPosition";
-    public static final String RECIPE = "Recipe";
-    public static final String PRESERVATION = "Preservation";
-    public static final String VOLUME = "Volume";
+    public static final String COLLECTION_YEAR = "CollectionYear";
     public static final String CONCENTRATION = "Concentration";
     public static final String CONCENTRATION_UNITS = "ConcentrationUnits";
-    public static final String RUN_TYPE = "RunType";
-    public static final String REQUESTED_READS = "RequestedReads";
-    public static final String PATIENT_ID = "PatientId";
-    public static final String BARCODE_ID = "BarcodeId";
-    public static final String OTHER_SAMPLE_ID = "OtherSampleId";
-    public static final String GENETIC_ALTERATIONS = "GeneticAlterations";
-    public static final String GENDER = "Gender";
-    public static final String ESTIMATED_PURITY = "EstimatedPurity";
-    public static final String COLLECTION_YEAR = "CollectionYear";
-    public static final String CLINICAL_INFO = "ClinicalInfo";
-    public static final String SPECIMEN_TYPE = "SpecimenType";
-    public static final String TISSUE_SITE = "TissueSite";
-    public static final String TUMOR_TYPE = "TumorType";
-    public static final String SPIKE_IN_GENES = "SpikeInGenes";
-    public static final String PLATFORM = "Platform";
-    public static final String ASSAY = "Assay";
-    public static final String NATO_EXTRACT = "NAtoExtract";
     public static final String CREATED_BY = "CreatedBy";
     public static final String DATA_RECORD_NAME = "DataRecordName";
+    public static final String DATA_TYPE_NAME = "BankedSample";
     public static final String DATE_CREATED = "DateCreated";
+    public static final String DMP_TRACKING_ID = "DMPTrackingId";
+    public static final String ESTIMATED_PURITY = "EstimatedPurity";
+    public static final String GENDER = "Gender";
+    public static final String GENETIC_ALTERATIONS = "GeneticAlterations";
+    public static final String INVESTIGATOR = "Investigator";
+    public static final String NATO_EXTRACT = "NAtoExtract";
+    public static final String NON_LIMS_LIBRARY_INPUT = "NonLimsLibraryInput";
+    public static final String NON_LIMS_LIBRARY_OUTPUT = "NonLimsLibraryOutput";
+    public static final String ORGANISM = "Organism";
+    public static final String OTHER_SAMPLE_ID = "OtherSampleId";
+    public static final String PATIENT_ID = "PatientId";
+    public static final String PLATE_ID = "PlateId";
+    public static final String PLATFORM = "Platform";
+    public static final String PRESERVATION = "Preservation";
+    public static final String PROMOTED = "Promoted";
+    public static final String RECIPE = "Recipe";
     public static final String RECORD_ID = "RecordId";
+    public static final String REQUEST_ID = "RequestId";
+    public static final String REQUESTED_READS = "RequestedReads";
+    public static final String ROW_INDEX = "RowIndex";
+    public static final String ROW_POSITION = "RowPosition";
+    public static final String RUN_TYPE = "RunType";
+    public static final String SAMPLE_CLASS = "SampleClass";
+    public static final String SAMPLE_ORIGIN = "SampleOrigin";
+    public static final String SAMPLE_TYPE = "SampleType";
+    public static final String SERVICE_ID = "ServiceId";
+    public static final String SPECIES = "Species";
+    public static final String SPECIMEN_TYPE = "SpecimenType";
+    public static final String SPIKE_IN_GENES = "SpikeInGenes";
+    public static final String TISSUE_SITE = "TissueSite";
+    public static final String TRANSACTION_ID = "TransactionId";
+    public static final String TUBE_BARCODE = "TubeBarcode";
+    public static final String TUMOR_OR_NORMAL = "TumorOrNormal";
+    public static final String TUMOR_TYPE = "TumorType";
+    public static final String USER_SAMPLE_ID = "UserSampleID";
+    public static final String VOLUME = "Volume";
 
     private final String id;
     private Map<String, Object> fields = new HashMap<>();
@@ -378,6 +381,22 @@ public class BankedSample {
         fields.put(ASSAY, value);
     }
 
+    public Double getNonLimsLibraryOutput() {
+        return (Double) fields.get(NON_LIMS_LIBRARY_OUTPUT);
+    }
+
+    public void setNonLimsLibraryOutput(Double value) {
+        fields.put(NON_LIMS_LIBRARY_OUTPUT, value);
+    }
+
+    public Double getNonLimsLibraryInput() {
+        return (Double) fields.get(NON_LIMS_LIBRARY_INPUT);
+    }
+
+    public void setNonLimsLibraryInput(Double value) {
+        fields.put(NON_LIMS_LIBRARY_INPUT, value);
+    }
+
     public String getNAtoExtract() {
         return (String) fields.get(NATO_EXTRACT);
     }
@@ -385,6 +404,15 @@ public class BankedSample {
     public void setNAtoExtract(String value) {
         fields.put(NATO_EXTRACT, value);
     }
+
+    public String getDMPTrackingId() {
+        return (String) fields.get(DMP_TRACKING_ID);
+    }
+
+    public void setDMPTrackingId(String value) {
+        fields.put(DMP_TRACKING_ID, value);
+    }
+
 
     public String getCreatedBy() {
         return (String) fields.get(CREATED_BY);

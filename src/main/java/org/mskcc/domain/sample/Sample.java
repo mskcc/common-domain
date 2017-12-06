@@ -80,7 +80,9 @@ public class Sample {
     private static Sample notAvailableSample = new NotAvailableSample();
     private final String igoId;
     private final Predicate<Sample> validSamplePredicate;
+
     protected Map<String, Object> fields = new HashMap<>();
+
     private Map<String, Run> runs = new LinkedHashMap<>();
     private Sample pairing;
     private String cmoSampleId = Constants.UNDEFINED;
@@ -103,7 +105,6 @@ public class Sample {
     private Request request;
     private String parentRequestId;
     private String seqName;
-
     public Sample(String igoId) {
         this(igoId, new ValidSamplePredicate());
     }
@@ -115,6 +116,10 @@ public class Sample {
 
     public static Sample getNotAvailableSample() {
         return notAvailableSample;
+    }
+
+    public Map<String, Object> getFields() {
+        return fields;
     }
 
     public void setFields(Map<String, Object> fields) {
