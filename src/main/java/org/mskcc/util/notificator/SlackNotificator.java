@@ -1,18 +1,18 @@
 package org.mskcc.util.notificator;
 
 import org.apache.log4j.Logger;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import org.mskcc.util.http.CurlCaller;
+import org.mskcc.util.http.ProcessBuilderCurlCaller;
 
 public class SlackNotificator implements Notificator {
-    public static final String SLACK_RESPONSE_SUCCESS = "ok";
     private static final Logger LOGGER = Logger.getLogger(SlackNotificator.class);
+
+    private static final String SLACK_RESPONSE_SUCCESS = "ok";
     private final String webhookUrl;
     private final String channel;
     private final String user;
     private final String icon;
+    private final CurlCaller curlCaller = new ProcessBuilderCurlCaller();
 
     public SlackNotificator(String webhookUrl, String channel, String user, String icon) {
         this.webhookUrl = webhookUrl;
@@ -27,20 +27,7 @@ public class SlackNotificator implements Notificator {
 
         String[] parameters = {"curl", "-X", "POST", "--data-urlencode", getMessage
                 (message), webhookUrl};
-        ProcessBuilder processBuilder = new ProcessBuilder(parameters);
-        Process process = processBuilder.start();
-
-        InputStream is = process.getInputStream();
-        InputStreamReader isr = new InputStreamReader(is);
-        BufferedReader br = new BufferedReader(isr);
-        StringBuilder responseStrBuilder = new StringBuilder();
-
-        String line;
-        while ((line = br.readLine()) != null) {
-            responseStrBuilder.append(line);
-        }
-
-        String response = responseStrBuilder.toString();
+        String response = curlCaller.call(parameters);
         if (!response.startsWith(SLACK_RESPONSE_SUCCESS)) {
             String errorMessage = String.format("Slack notification not sent to channel: %s with message: %s. Cause: " +
                             "%s",
