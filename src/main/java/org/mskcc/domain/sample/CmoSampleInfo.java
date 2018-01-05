@@ -55,7 +55,7 @@ public class CmoSampleInfo {
     }
 
     public String getCorrectedCMOID() {
-        return (String) fields.get(CORRECTED_CMOID);
+        return (String) fields.getOrDefault(CORRECTED_CMOID, "");
     }
 
     public void setCorrectedCMOID(String value) {
