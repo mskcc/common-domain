@@ -11,6 +11,7 @@ public enum SpecimenType {
     BLOOD("Blood"),
     CELLLINE("CellLine"),
     CFDNA("cfDNA"),
+    EXOSOME("Exosome"),
     PDX("PDX"),
     XENOGRAFT("Xenograft"),
     XENOGRAFTDERIVEDCELLLINE("XenograftDerivedCellLine"),
