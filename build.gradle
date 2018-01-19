@@ -15,7 +15,10 @@ dependencies {
     compile group: 'javax.mail', name: 'mail', version: '1.4.1'
     compile group: 'com.google.guava', name: 'guava', version: '22.0'
     compile group: 'log4j', name: 'log4j', version: '1.2.16'
+
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.1'
+    compile group: 'commons-codec', name: 'commons-codec', version: '1.5'
+
     compile group: 'org.springframework', name: 'spring-webmvc', version: '4.1.7.RELEASE'
     compile group: 'org.springframework', name: 'spring-core', version: '4.1.7.RELEASE'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.2'
