@@ -86,7 +86,7 @@ public class Sample {
     private Map<String, Run> runs = new LinkedHashMap<>();
     private Sample pairing;
     private String cmoSampleId = Constants.UNDEFINED;
-    private int numberOfReads;
+    private long numberOfReads;
     private String alias = "";
     private Map<String, String> properties = new LinkedHashMap<>();
     private boolean pooledNormal;
@@ -626,11 +626,11 @@ public class Sample {
         return protocols;
     }
 
-    public int getNumberOfReads() {
+    public long getNumberOfReads() {
         return numberOfReads;
     }
 
-    public void setNumberOfReads(int numberOfReads) {
+    public void setNumberOfReads(long numberOfReads) {
         this.numberOfReads = numberOfReads;
     }
 
