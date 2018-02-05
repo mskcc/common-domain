@@ -15,6 +15,7 @@ public class CorrectedCmoSampleView {
     private SampleOrigin sampleOrigin;
     private SpecimenType specimenType;
     private NucleicAcid nucleidAcid;
+    private Integer counter;
     private String correctedCmoId = "";
 
     public CorrectedCmoSampleView(String id) {
@@ -88,6 +89,14 @@ public class CorrectedCmoSampleView {
 
     public String getId() {
         return id;
+    }
+
+    public Integer getCounter() {
+        return counter;
+    }
+
+    public void setCounter(Integer counter) {
+        this.counter = counter;
     }
 
     @Override

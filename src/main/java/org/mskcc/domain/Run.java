@@ -19,7 +19,7 @@ public class Run {
     //@TODO create subclass
     private boolean badRun;
     private long recordId;
-    private int numberOfReads;
+    private long numberOfReads;
     private String note = "";
     private boolean valid;
 
@@ -76,11 +76,11 @@ public class Run {
         this.recordId = recordId;
     }
 
-    public int getNumberOfReads() {
+    public long getNumberOfReads() {
         return numberOfReads;
     }
 
-    public void setNumberOfReads(int numberOfReads) {
+    public void setNumberOfReads(long numberOfReads) {
         this.numberOfReads = numberOfReads;
     }
 
