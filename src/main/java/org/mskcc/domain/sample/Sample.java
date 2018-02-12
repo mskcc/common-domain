@@ -17,7 +17,7 @@ public class Sample {
     private Sample pairing;
     private String cmoSampleId = Constants.UNDEFINED;
     private final Predicate<Sample> validSamplePredicate;
-    private int numberOfReads;
+    private long numberOfReads;
     private String alias = "";
     private Map<String, String> properties = new LinkedHashMap<>();
     private boolean pooledNormal;
@@ -41,11 +41,11 @@ public class Sample {
         this.validSamplePredicate = validSamplePredicate;
     }
 
-    public int getNumberOfReads() {
+    public long getNumberOfReads() {
         return numberOfReads;
     }
 
-    public void setNumberOfReads(int numberOfReads) {
+    public void setNumberOfReads(long numberOfReads) {
         this.numberOfReads = numberOfReads;
     }
 
