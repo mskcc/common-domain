@@ -25,7 +25,7 @@ public class SlackNotificator implements Notificator {
     public void notifyMessage(String requestId, String message) throws Exception {
         LOGGER.info(String.format("Sending Slack notification to channel: %s", channel));
 
-        String[] parameters = {"curl", "-X", "POST", "--data-urlencode", getMessage
+        String[] parameters = {"curl", "-X", "POST", "-H", "'Content-type: application/json'", "--data", getMessage
                 (message), webhookUrl};
         String response = curlCaller.call(parameters);
         if (!response.startsWith(SLACK_RESPONSE_SUCCESS)) {
