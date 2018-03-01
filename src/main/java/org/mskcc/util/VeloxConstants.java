@@ -17,6 +17,8 @@ public class VeloxConstants {
     public static final String EXEMPLAR_SAMPLE_STATUS = "ExemplarSampleStatus";
     public static final String EXOME = "Exome";
     public static final String EXPERIMENT_ID = "ExperimentId";
+    public static final String EXTERNAL_ID = "ExternalId";
+    public static final String EXTERNAL_SPECIMEN = "ExternalSpecimen";
     public static final String FLOW_CELL_LANE = "FlowCellLane";
     public static final String KAPA_AGILENT_CAPTURE_PROTOCOL_1 = "KAPAAgilentCaptureProtocol1";
     public static final String KAPA_AGILENT_CAPTURE_PROTOCOL_2 = "KAPAAgilentCaptureProtocol2";

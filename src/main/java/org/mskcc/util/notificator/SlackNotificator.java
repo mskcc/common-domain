@@ -23,10 +23,10 @@ public class SlackNotificator implements Notificator {
 
     @Override
     public void notifyMessage(String requestId, String message) throws Exception {
-        LOGGER.info(String.format("Sending Slack notification to channel: %s", channel));
+        String payload = getMessage(message);
+        LOGGER.info(String.format("Sending Slack notification to channel: %s with message: %s", channel, payload));
 
-        String[] parameters = {"curl", "-X", "POST", "-H", "'Content-type: application/json'", "--data", getMessage
-                (message), webhookUrl};
+        String[] parameters = {"curl", "-X", "POST", "--data-urlencode", payload, webhookUrl};
         String response = curlCaller.call(parameters);
         if (!response.startsWith(SLACK_RESPONSE_SUCCESS)) {
             String errorMessage = String.format("Slack notification not sent to channel: %s with message: %s. Cause: " +

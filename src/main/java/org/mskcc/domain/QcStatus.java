@@ -1,43 +1,38 @@
 package org.mskcc.domain;
 
-import org.mskcc.util.Constants;
-
 import java.util.HashMap;
 import java.util.Map;
 
 public enum QcStatus {
-    FAILED(Constants.FAILED),
-    FAILED_REPROCESS(Constants.FAILED_REPROCESS),
-    PASSED(Constants.PASSED),
-    REQUIRED_ADDITIONAL_READS(Constants.REQUIRED_ADDITIONAL_READS),
-    UNDER_REVIEW(Constants.UNDER_REVIEW);
+    RESEQUENCE_POOL("Resequence-Pool"),
+    REPOOL_SAMPLE("Repool-Sample"),
+    UNDER_REVIEW("Under-Review"),
+    PASSED("Passed"),
+    FAILED_DO_NOT_DELIVER("Failed-Do-Not-Deliver"),
+    RECAPTURE_SAMPLE("Recapture-Sample"),
+    NEW_LIBRARY_NEEDED("New-Library-Needed");
 
+    private String value;
     private static final Map<String, QcStatus> valueToQcStatus = new HashMap<>();
 
     static {
         for (QcStatus qcStatus : values()) {
-            valueToQcStatus.put(qcStatus.getValue(), qcStatus);
+            valueToQcStatus.put(qcStatus.value, qcStatus);
         }
     }
-
-    private String value;
 
     QcStatus(String value) {
         this.value = value;
     }
 
     public static QcStatus getByValue(String value) {
-        if (!valueToQcStatus.containsKey(value))
+        if(!valueToQcStatus.containsKey(value))
             throw new RuntimeException(String.format("Qc status: %s doesn't exist", value));
+
         return valueToQcStatus.get(value);
     }
 
     public String getValue() {
-        return value;
-    }
-
-    @Override
-    public String toString() {
         return value;
     }
 }

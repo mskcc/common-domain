@@ -1,6 +1,13 @@
 package org.mskcc.domain.external;
 
-public class ExternalSample {
+import org.mskcc.domain.Run;
+import org.mskcc.domain.sample.Sample;
+import org.mskcc.domain.sample.TumorNormalType;
+
+import java.util.Set;
+import java.util.stream.Collectors;
+
+public class ExternalSample extends Sample {
     private String externalId;
     private String filePath;
     private String externalPatientId;
@@ -22,17 +29,66 @@ public class ExternalSample {
                           String sampleClass,
                           String sampleOrigin,
                           String tumorNormal) {
+        super(externalId);
         this.counter = counter;
         this.externalId = externalId;
         this.externalPatientId = externalPatientId;
         this.filePath = filePath;
         this.sampleOrigin = sampleOrigin;
         this.runId = runId;
+        putRunIfAbsent(runId);
         this.sampleClass = sampleClass;
         this.tumorNormal = tumorNormal;
     }
 
+    @Override
+    public boolean isValid() {
+        return true;
+    }
+
+    @Override
+    public Set<Run> getValidRuns() {
+        return getRuns().values().stream()
+                .collect(Collectors.toSet());
+    }
+
+    @Override
+    public String getIgoId() {
+        return externalId;
+    }
+
+    @Override
+    public Set<String> getValidRunIds() {
+        return getRuns().keySet();
+    }
+
+    @Override
+    public String getPatientId() {
+        return externalPatientId;
+    }
+
+    @Override
+    public String getCmoPatientId() {
+        return patientCmoId;
+    }
+
+    @Override
+    public String getCmoSampleId() {
+        return cmoId;
+    }
+
+    @Override
+    public String getCorrectedCmoSampleId() {
+        return cmoId;
+    }
+
+    @Override
+    public boolean isTumor() {
+        return TumorNormalType.getByValue(tumorNormal) == TumorNormalType.TUMOR;
+    }
+
     protected ExternalSample() {
+        super("");
     }
 
     public String getExternalRunId() {

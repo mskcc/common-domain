@@ -8,6 +8,7 @@ public class BankedSample {
     public static final String BARCODE_ID = "BarcodeId";
     public static final String CELL_COUNT = "CellCount";
     public static final String CLINICAL_INFO = "ClinicalInfo";
+    public static final String CMO_PATIENT_ID = "CMOPatientId";
     public static final String COL_POSITION = "ColPosition";
     public static final String COLLECTION_YEAR = "CollectionYear";
     public static final String CONCENTRATION = "Concentration";
@@ -24,6 +25,7 @@ public class BankedSample {
     public static final String NATO_EXTRACT = "NAtoExtract";
     public static final String NON_LIMS_LIBRARY_INPUT = "NonLimsLibraryInput";
     public static final String NON_LIMS_LIBRARY_OUTPUT = "NonLimsLibraryOutput";
+    public static final String NORMALIZED_PATIENT_ID = "NormalizedPatientId";
     public static final String ORGANISM = "Organism";
     public static final String OTHER_SAMPLE_ID = "OtherSampleId";
     public static final String PATIENT_ID = "PatientId";
@@ -428,5 +430,21 @@ public class BankedSample {
 
     public String getId() {
         return id;
+    }
+
+    public String getCMOPatientId() {
+        return (String) fields.get(CMO_PATIENT_ID);
+    }
+
+    public void setCMOPatientId(String cmoPatientId) {
+        fields.put(CMO_PATIENT_ID, cmoPatientId);
+    }
+
+    public String getNormalizedPatientId() {
+        return (String) fields.get(NORMALIZED_PATIENT_ID);
+    }
+
+    public void setNormalizedPatientId(String normalizedPatientId) {
+        fields.put(NORMALIZED_PATIENT_ID, normalizedPatientId);
     }
 }

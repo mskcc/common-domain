@@ -1,7 +1,5 @@
 package org.mskcc.util;
 
-import com.google.common.base.Strings;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collector;
@@ -15,7 +13,7 @@ public class CommonUtils {
     }
 
     public static String requireNonNullNorEmpty(String string, String message) {
-        if (Strings.isNullOrEmpty(string))
+        if (string == null || string == "")
             throw new NullOrEmptyException(message);
         return string;
     }
