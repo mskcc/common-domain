@@ -447,4 +447,11 @@ public class BankedSample {
     public void setNormalizedPatientId(String normalizedPatientId) {
         fields.put(NORMALIZED_PATIENT_ID, normalizedPatientId);
     }
+
+    @Override
+    public String toString() {
+        return "BankedSample{" +
+                "id='" + id + '\'' +
+                '}';
+    }
 }

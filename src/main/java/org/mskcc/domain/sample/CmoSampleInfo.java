@@ -50,10 +50,6 @@ public class CmoSampleInfo {
         this.fields = fields;
     }
 
-    public void setFields(Map<String, Object> fields) {
-        this.fields = fields;
-    }
-
     public String getCorrectedCMOID() {
         return (String) fields.getOrDefault(CORRECTED_CMOID, "");
     }
@@ -300,5 +296,13 @@ public class CmoSampleInfo {
 
     public String getMultiParentLink107() {
         return (String) fields.get(MULTI_PARENT_LINK_107);
+    }
+
+    public Map<String, Object> getFields() {
+        return fields;
+    }
+
+    public void setFields(Map<String, Object> fields) {
+        this.fields = fields;
     }
 }
