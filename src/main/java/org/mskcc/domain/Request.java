@@ -11,6 +11,10 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Request {
+    public static final String REQUEST_ID = "RequestId";
+    public static final String PI_EMAIL = "PIemail";
+    public static final String INVESTIGATOR_EMAIL = "Investigatoremail";
+
     private final String id;
     private Map<String, Sample> samples = new LinkedHashMap<>();
     private Map<String, Pool> pools = new LinkedHashMap<>();
