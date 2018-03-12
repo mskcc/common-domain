@@ -4,15 +4,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum QcStatus {
-    RESEQUENCE_POOL("Resequence-Pool"),
-    REPOOL_SAMPLE("Repool-Sample"),
-    UNDER_REVIEW("Under-Review"),
+    FAILED("Failed"),
+    NEW_LIBRARY_NEEDED("New-Library-Needed"),
     PASSED("Passed"),
-    FAILED_DO_NOT_DELIVER("Failed-Do-Not-Deliver"),
     RECAPTURE_SAMPLE("Recapture-Sample"),
-    NEW_LIBRARY_NEEDED("New-Library-Needed");
+    REPOOL_SAMPLE("Repool-Sample"),
+    REQUIRED_ADDITIONAL_READS("Required-Additional-Reads"),
+    RESEQUENCE_POOL("Resequence-Pool"),
+    UNDER_REVIEW("Under-Review");
 
-    private String value;
     private static final Map<String, QcStatus> valueToQcStatus = new HashMap<>();
 
     static {
@@ -20,6 +20,8 @@ public enum QcStatus {
             valueToQcStatus.put(qcStatus.value, qcStatus);
         }
     }
+
+    private String value;
 
     QcStatus(String value) {
         this.value = value;
