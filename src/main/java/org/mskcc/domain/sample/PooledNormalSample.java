@@ -44,4 +44,14 @@ public class PooledNormalSample extends Sample {
         }
         return runs.get(runID);
     }
+
+    @Override
+    public String getCorrectedCmoSampleId() {
+        return getCmoSampleId();
+    }
+
+    @Override
+    public void setCorrectedCmoId(String value) {
+        setCmoSampleId(value);
+    }
 }

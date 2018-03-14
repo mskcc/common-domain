@@ -1,5 +1,6 @@
 package org.mskcc.domain;
 
+import org.mskcc.domain.external.ExternalSample;
 import org.mskcc.domain.sample.Sample;
 
 import java.util.*;
@@ -13,6 +14,7 @@ public class SampleSet {
     private String baitSet;
     private String finalProjectTitle;
     private Recipe recipe;
+    private List<ExternalSample> externalSamples = new ArrayList<>();
 
     public SampleSet(String name) {
         this.name = name;
@@ -121,5 +123,13 @@ public class SampleSet {
 
     public List<Sample> getSamples() {
         return new ArrayList<>(sampleIdToSample.values());
+    }
+
+    public List<ExternalSample> getExternalSamples() {
+        return externalSamples;
+    }
+
+    public void setExternalSamples(List<ExternalSample> externalSamples) {
+        this.externalSamples = externalSamples;
     }
 }
