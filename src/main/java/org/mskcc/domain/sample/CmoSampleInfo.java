@@ -24,6 +24,7 @@ public class CmoSampleInfo {
     public static final String GENDER = "Gender";
     public static final String GENETIC_ALTERATIONS = "GeneticAlterations";
     public static final String MULTI_PARENT_LINK_107 = "MultiParentLink107";
+    public static final String NORMALIZED_PATIENT_ID = "NormalizedPatientId";
     public static final String OTHER_SAMPLE_ID = "OtherSampleId";
     public static final String PATIENT_ID = "PatientId";
     public static final String PRESERVATION = "Preservation";
@@ -112,6 +113,14 @@ public class CmoSampleInfo {
 
     public void setCmoPatientId(String value) {
         fields.put(CMO_PATIENT_ID, value);
+    }
+
+    public String getNormalizedPatientId() {
+        return (String) fields.get(NORMALIZED_PATIENT_ID);
+    }
+
+    public void setNormalizedPatientId(String value) {
+        fields.put(NORMALIZED_PATIENT_ID, value);
     }
 
     public Double getDMPLibraryInput() {

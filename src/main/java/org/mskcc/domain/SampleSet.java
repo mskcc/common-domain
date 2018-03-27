@@ -71,6 +71,10 @@ public class SampleSet {
     }
 
     public Request getPrimaryRequest() {
+        if (!requestIdToRequest.containsKey(primaryRequestId))
+            throw new PrimaryRequestNotPartOfSampleSetException(String.format("Primary request: %s for project: %s is" +
+                    " not part of this project", primaryRequestId, name));
+
         return requestIdToRequest.get(primaryRequestId);
     }
 
@@ -131,5 +135,11 @@ public class SampleSet {
 
     public void setExternalSamples(List<ExternalSample> externalSamples) {
         this.externalSamples = externalSamples;
+    }
+
+    public static class PrimaryRequestNotPartOfSampleSetException extends RuntimeException {
+        public PrimaryRequestNotPartOfSampleSetException(String message) {
+            super(message);
+        }
     }
 }
