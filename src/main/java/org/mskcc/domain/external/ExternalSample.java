@@ -3,6 +3,7 @@ package org.mskcc.domain.external;
 import org.mskcc.domain.Run;
 import org.mskcc.domain.sample.Sample;
 import org.mskcc.domain.sample.TumorNormalType;
+import org.mskcc.util.Constants;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -39,6 +40,13 @@ public class ExternalSample extends Sample {
         putRunIfAbsent(runId);
         this.sampleClass = sampleClass;
         this.tumorNormal = tumorNormal;
+        put(Constants.INVESTIGATOR_SAMPLE_ID, externalId);
+        put(Constants.INVESTIGATOR_PATIENT_ID, externalPatientId);
+        put(Constants.SAMPLE_CLASS, sampleClass);
+    }
+
+    protected ExternalSample() {
+        super("");
     }
 
     @Override
@@ -87,10 +95,6 @@ public class ExternalSample extends Sample {
         return TumorNormalType.getByValue(tumorNormal) == TumorNormalType.TUMOR;
     }
 
-    protected ExternalSample() {
-        super("");
-    }
-
     public String getExternalRunId() {
         return this.runId;
     }
@@ -99,8 +103,16 @@ public class ExternalSample extends Sample {
         return this.filePath;
     }
 
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
     public String getSampleOrigin() {
         return this.sampleOrigin;
+    }
+
+    public void setSampleOrigin(String sampleOrigin) {
+        this.sampleOrigin = sampleOrigin;
     }
 
     public String getSpecimenType() {
@@ -125,10 +137,16 @@ public class ExternalSample extends Sample {
 
     public void setCmoId(String cmoId) {
         this.cmoId = cmoId;
+        put(Constants.CMO_SAMPLE_ID, cmoId);
+        put(Constants.CORRECTED_CMO_ID, cmoId);
     }
 
     public String getExternalId() {
         return this.externalId;
+    }
+
+    public void setExternalId(String externalId) {
+        this.externalId = externalId;
     }
 
     public String getPatientCmoId() {
@@ -137,42 +155,39 @@ public class ExternalSample extends Sample {
 
     public void setPatientCmoId(String patientCmoId) {
         this.patientCmoId = patientCmoId;
+        put(Constants.CMO_PATIENT_ID, patientCmoId);
     }
 
     public String getExternalPatientId() {
         return this.externalPatientId;
     }
 
+    public void setExternalPatientId(String externalPatientId) {
+        this.externalPatientId = externalPatientId;
+    }
+
     public int getCounter() {
         return counter;
+    }
+
+    public void setCounter(int counter) {
+        this.counter = counter;
     }
 
     public String getSampleClass() {
         return sampleClass;
     }
 
+    public void setSampleClass(String sampleClass) {
+        this.sampleClass = sampleClass;
+    }
+
     public String getTumorNormal() {
         return tumorNormal;
     }
 
-    public void setExternalId(String externalId) {
-        this.externalId = externalId;
-    }
-
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
-    }
-
-    public void setExternalPatientId(String externalPatientId) {
-        this.externalPatientId = externalPatientId;
-    }
-
     public void setTumorNormal(String tumorNormal) {
         this.tumorNormal = tumorNormal;
-    }
-
-    public void setCounter(int counter) {
-        this.counter = counter;
     }
 
     public String getRunId() {
@@ -183,12 +198,14 @@ public class ExternalSample extends Sample {
         this.runId = runId;
     }
 
-    public void setSampleOrigin(String sampleOrigin) {
-        this.sampleOrigin = sampleOrigin;
+    @Override
+    public boolean hasBarcode() {
+        return true;
     }
 
-    public void setSampleClass(String sampleClass) {
-        this.sampleClass = sampleClass;
+    @Override
+    public String getSeqName() {
+        return "DMPSample";
     }
 
     @Override

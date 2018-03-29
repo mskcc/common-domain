@@ -105,6 +105,7 @@ public class Sample {
     private Request request;
     private String parentRequestId;
     private String seqName;
+
     public Sample(String igoId) {
         this(igoId, new ValidSamplePredicate());
     }
@@ -887,7 +888,7 @@ public class Sample {
     }
 
     public String getCorrectedCmoSampleId() {
-        return cmoSampleInfo.getCorrectedCMOID();
+        return properties.getOrDefault(Constants.CORRECTED_CMO_ID, cmoSampleInfo.getCorrectedCMOID());
     }
 
     public String getCorrectedCmoSampleOrigin() {
@@ -904,5 +905,18 @@ public class Sample {
 
     public String getCorrectedSampleClass() {
         return cmoSampleInfo.getCMOSampleClass();
+    }
+
+    public boolean hasBarcode() {
+        //@TODO I think barcode ID should be checked but done as above to have same results as prod version
+        /*
+        String barcodeId = sample.getProperties().get(Constants.BARCODE_ID);
+        if (StringUtils.isEmpty(barcodeId) || Objects.equals(barcodeId, Constants.EMPTY))
+            logError(String.format("Unable to get barcode for %s AKA: %s", sample.getProperties().get(Constants
+            .IGO_ID), sample.getProperties().get(Constants.CMO_SAMPLE_ID))); //" there must be a sample specific QC
+            data record that I can search up from");
+        */
+        return runs.values().stream()
+                .anyMatch(r -> r.getSampleLevelQcStatus() != null);
     }
 }

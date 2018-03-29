@@ -21,8 +21,9 @@ public class PooledNormalSample extends Sample {
 
     @Override
     public Set<Run> getValidRuns() {
-        return getRuns().values().stream()
+        Set<Run> runs = getRuns().values().stream()
                 .filter(r -> Run.getAllRuns(Run::isPassed).contains(r) || r.isValid()).collect(Collectors.toSet());
+        return runs;
     }
 
     @Override

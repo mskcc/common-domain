@@ -12,6 +12,7 @@ public enum InstrumentType {
     ALL_COMPATIBLE_NA_NORMAL("All compatible na normal"),
     BIOANALYZER("Bioanalyzer"),
     COVARIS("Covaris"),
+    DMP_SAMPLE("DMPSample"),
     FRAGMENT_ANALYZER("Fragment Analyzer"),
     GEL_IMAGER("GelImager"),
     HISEQ("HiSeq"),
@@ -29,25 +30,24 @@ public enum InstrumentType {
     THERMOCYCLER("Thermocycler");
 
     private static final Multimap<InstrumentType, InstrumentType> instrumentCompatibility = HashMultimap.create();
+    private static final Map<String, InstrumentType> nameToEnum = new HashMap<>();
+    private static final Map<String, InstrumentType> instrumentTypeToNames = new HashMap<>();
 
     static {
         instrumentCompatibility.put(InstrumentType.HISEQ, InstrumentType.MISEQ);
         instrumentCompatibility.put(InstrumentType.MISEQ, InstrumentType.HISEQ);
     }
 
-    private static final Map<String, InstrumentType> nameToEnum = new HashMap<>();
-    private static final Map<String, InstrumentType> instrumentTypeToNames = new HashMap<>();
-
     static {
         for (InstrumentType enumValue : values()) {
-            nameToEnum.put(enumValue.name, enumValue);
+            nameToEnum.put(enumValue.value, enumValue);
         }
     }
 
-    private final String name;
+    private final String value;
 
-    InstrumentType(String name) {
-        this.name = name;
+    InstrumentType(String value) {
+        this.value = value;
     }
 
     public static InstrumentType fromString(String name) {
@@ -68,13 +68,17 @@ public enum InstrumentType {
         return instrumentTypeToNames.get(instrumentName);
     }
 
+    public String getValue() {
+        return value;
+    }
+
     @Override
     public String toString() {
-        return name;
+        return value;
     }
 
     public boolean isCompatibleWith(InstrumentType instrumentType) {
-        if(instrumentType == ALL_COMPATIBLE_NA_NORMAL)
+        if (instrumentType == ALL_COMPATIBLE_NA_NORMAL || instrumentType == DMP_SAMPLE)
             return true;
 
         return this == instrumentType || instrumentCompatibility.get(this).contains(instrumentType);
