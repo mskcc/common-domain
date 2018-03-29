@@ -22,6 +22,7 @@ public class BankedSample {
     public static final String GENDER = "Gender";
     public static final String GENETIC_ALTERATIONS = "GeneticAlterations";
     public static final String INVESTIGATOR = "Investigator";
+    public static final String MICRONIC_TUBE_BARCODE = "MicronicTubeBarcode";
     public static final String NATO_EXTRACT = "NAtoExtract";
     public static final String NON_LIMS_LIBRARY_INPUT = "NonLimsLibraryInput";
     public static final String NON_LIMS_LIBRARY_OUTPUT = "NonLimsLibraryOutput";
@@ -381,6 +382,14 @@ public class BankedSample {
 
     public void setAssay(String value) {
         fields.put(ASSAY, value);
+    }
+
+    public String getMicronicTubeBarcode() {
+        return (String) fields.get(MICRONIC_TUBE_BARCODE);
+    }
+
+    public void setMicronicTubeBarcode(String value) {
+        fields.put(MICRONIC_TUBE_BARCODE, value);
     }
 
     public Double getNonLimsLibraryOutput() {
