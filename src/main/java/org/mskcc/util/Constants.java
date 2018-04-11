@@ -96,6 +96,8 @@ public class Constants {
     public static final String WES = "WES";
     public static final String DNA_LIBRARY = "DNA Library";
     public static final String RECEIVED = "Received";
+    public static final String DNA_ABBREV = "d";
+    public static final String RNA_ABBREV = "r";
 
     public static class Manifest {
         public static final String SAMPLE_INFO = "SampleInfo";

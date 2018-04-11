@@ -17,6 +17,7 @@ public class CorrectedCmoSampleView {
     private NucleicAcid nucleidAcid;
     private Integer counter;
     private String correctedCmoId = "";
+    private SampleType sampleType;
 
     public CorrectedCmoSampleView(String id) {
         CommonUtils.requireNonNullNorEmpty(id, String.format("Id is not set"));
@@ -99,11 +100,20 @@ public class CorrectedCmoSampleView {
         this.counter = counter;
     }
 
+    public SampleType getSampleType() {
+        return sampleType;
+    }
+
+    public void setSampleType(SampleType sampleType) {
+        this.sampleType = sampleType;
+    }
+
     @Override
     public String toString() {
         return "CorrectedCmoSampleView{" +
                 "id='" + id + '\'' +
                 ", sampleId='" + sampleId + '\'' +
+                ", sampleType='" + sampleType + '\'' +
                 ", requestId='" + requestId + '\'' +
                 ", patientId='" + patientId + '\'' +
                 ", sampleClass=" + sampleClass +

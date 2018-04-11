@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum NucleicAcid {
+    CFDNA("cfDNA"),
     DNA("DNA"),
     RNA("RNA"),
     DNA_AND_RNA("DNA and RNA");
