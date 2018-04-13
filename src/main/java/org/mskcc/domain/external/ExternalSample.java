@@ -1,14 +1,6 @@
 package org.mskcc.domain.external;
 
-import org.mskcc.domain.Run;
-import org.mskcc.domain.sample.Sample;
-import org.mskcc.domain.sample.TumorNormalType;
-import org.mskcc.util.Constants;
-
-import java.util.Set;
-import java.util.stream.Collectors;
-
-public class ExternalSample extends Sample {
+public class ExternalSample {
     private String externalId;
     private String filePath;
     private String externalPatientId;
@@ -21,6 +13,11 @@ public class ExternalSample extends Sample {
     private String nucleidAcid;
     private String patientCmoId;
     private String specimenType;
+    private String sex;
+    private String oncotreeCode;
+    private String baitVersion;
+    private String tissueSite;
+    private String preservationType;
 
     public ExternalSample(int counter,
                           String externalId,
@@ -30,69 +27,18 @@ public class ExternalSample extends Sample {
                           String sampleClass,
                           String sampleOrigin,
                           String tumorNormal) {
-        super(externalId);
         this.counter = counter;
         this.externalId = externalId;
         this.externalPatientId = externalPatientId;
         this.filePath = filePath;
         this.sampleOrigin = sampleOrigin;
         this.runId = runId;
-        putRunIfAbsent(runId);
         this.sampleClass = sampleClass;
         this.tumorNormal = tumorNormal;
-        put(Constants.INVESTIGATOR_SAMPLE_ID, externalId);
-        put(Constants.INVESTIGATOR_PATIENT_ID, externalPatientId);
-        put(Constants.SAMPLE_CLASS, sampleClass);
     }
 
-    protected ExternalSample() {
-        super("");
-    }
-
-    @Override
-    public boolean isValid() {
-        return true;
-    }
-
-    @Override
-    public Set<Run> getValidRuns() {
-        return getRuns().values().stream()
-                .collect(Collectors.toSet());
-    }
-
-    @Override
-    public String getIgoId() {
-        return externalId;
-    }
-
-    @Override
-    public Set<String> getValidRunIds() {
-        return getRuns().keySet();
-    }
-
-    @Override
-    public String getPatientId() {
-        return externalPatientId;
-    }
-
-    @Override
-    public String getCmoPatientId() {
-        return patientCmoId;
-    }
-
-    @Override
-    public String getCmoSampleId() {
-        return cmoId;
-    }
-
-    @Override
-    public String getCorrectedCmoSampleId() {
-        return cmoId;
-    }
-
-    @Override
-    public boolean isTumor() {
-        return TumorNormalType.getByValue(tumorNormal) == TumorNormalType.TUMOR;
+    // empty constructor for json
+    public ExternalSample() {
     }
 
     public String getExternalRunId() {
@@ -137,8 +83,6 @@ public class ExternalSample extends Sample {
 
     public void setCmoId(String cmoId) {
         this.cmoId = cmoId;
-        put(Constants.CMO_SAMPLE_ID, cmoId);
-        put(Constants.CORRECTED_CMO_ID, cmoId);
     }
 
     public String getExternalId() {
@@ -155,7 +99,6 @@ public class ExternalSample extends Sample {
 
     public void setPatientCmoId(String patientCmoId) {
         this.patientCmoId = patientCmoId;
-        put(Constants.CMO_PATIENT_ID, patientCmoId);
     }
 
     public String getExternalPatientId() {
@@ -198,14 +141,44 @@ public class ExternalSample extends Sample {
         this.runId = runId;
     }
 
-    @Override
-    public boolean hasBarcode() {
-        return true;
+    public String getSex() {
+        return sex;
     }
 
-    @Override
-    public String getSeqName() {
-        return "DMPSample";
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getOncotreeCode() {
+        return oncotreeCode;
+    }
+
+    public void setOncotreeCode(String oncotreeCode) {
+        this.oncotreeCode = oncotreeCode;
+    }
+
+    public String getBaitVersion() {
+        return baitVersion;
+    }
+
+    public void setBaitVersion(String baitVersion) {
+        this.baitVersion = baitVersion;
+    }
+
+    public String getTissueSite() {
+        return tissueSite;
+    }
+
+    public void setTissueSite(String tissueSite) {
+        this.tissueSite = tissueSite;
+    }
+
+    public String getPreservationType() {
+        return preservationType;
+    }
+
+    public void setPreservationType(String preservationType) {
+        this.preservationType = preservationType;
     }
 
     @Override
@@ -222,6 +195,11 @@ public class ExternalSample extends Sample {
                 ", nucleidAcid='" + nucleidAcid + '\'' +
                 ", patientCmoId='" + patientCmoId + '\'' +
                 ", specimenType='" + specimenType + '\'' +
+                ", sex='" + sex + '\'' +
+                ", oncotreeCode='" + oncotreeCode + '\'' +
+                ", baitVersion='" + baitVersion + '\'' +
+                ", tissueSite='" + tissueSite + '\'' +
+                ", preservationType='" + preservationType + '\'' +
                 '}';
     }
 }
