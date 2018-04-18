@@ -12,6 +12,9 @@ repositories {
 }
 
 dependencies {
+    compile group: 'com.velox.internalproducts', name: 'veloxapi', version: '9.5.1-b633'
+    compile group: 'com.velox.internalproducts', name: 'sapioutils', version: '7.1.1-LIMS9.5.0'
+
     compile group: 'javax.mail', name: 'mail', version: '1.4.1'
     compile group: 'javax.persistence', name: 'persistence-api', version: '1.0.2'
 
