@@ -37,7 +37,7 @@ public enum SpecimenType {
 
     public static SpecimenType fromValue(String value) {
         if (StringUtils.isEmpty(value))
-            throw new IllegalArgumentException("Specimen Type (CMO Sample Class) is empty");
+            throw new IllegalArgumentException("Specimen Type (CMO Sample Type) is empty");
         if (!valueToSpecimenType.containsKey(value))
             throw new RuntimeException(String.format("Unsupported Specimen Type: %s", value));
         return valueToSpecimenType.get(value);

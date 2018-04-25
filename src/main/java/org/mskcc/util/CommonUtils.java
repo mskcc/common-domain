@@ -13,7 +13,7 @@ public class CommonUtils {
     }
 
     public static String requireNonNullNorEmpty(String string, String message) {
-        if (string == null || string == "")
+        if (string == null || "".equals(string))
             throw new NullOrEmptyException(message);
         return string;
     }
