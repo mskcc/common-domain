@@ -22,6 +22,7 @@ public class Run {
     private long numberOfReads;
     private String note = "";
     private boolean valid;
+    private String runFolder;
 
     private Predicate<Run> passedRunPredicate = new PassedRunPredicate();
     private Predicate<Run> sampleQcPredicate = new SampleQcPassedPredicate();
@@ -47,6 +48,14 @@ public class Run {
 
     public static Map<String, String> getRunIdToPoolName() {
         return runIdToPoolName;
+    }
+
+    public static void addRunIdPoolNameMapping(String runId, String poolName) {
+        if (runIdToPoolName.containsKey(runId)) {
+            runIdToPoolName.put(runId, runIdToPoolName.get(runId) + ";" + poolName);
+        } else {
+            runIdToPoolName.put(runId, poolName);
+        }
     }
 
     public void setPassedRunPredicate(Predicate<Run> passedRunPredicate) {
@@ -82,14 +91,6 @@ public class Run {
 
     public void setNumberOfReads(long numberOfReads) {
         this.numberOfReads = numberOfReads;
-    }
-
-    public static void addRunIdPoolNameMapping(String runId, String poolName) {
-        if (runIdToPoolName.containsKey(runId)) {
-            runIdToPoolName.put(runId, runIdToPoolName.get(runId) + ";" + poolName);
-        } else {
-            runIdToPoolName.put(runId, poolName);
-        }
     }
 
     public String getId() {
@@ -159,5 +160,13 @@ public class Run {
 
     public void setValid(boolean valid) {
         this.valid = valid;
+    }
+
+    public String getRunFolder() {
+        return runFolder;
+    }
+
+    public void setRunFolder(String runFolder) {
+        this.runFolder = runFolder;
     }
 }
