@@ -1,13 +1,17 @@
 package org.mskcc.domain.sample;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.mskcc.util.CommonUtils;
 
 /**
  * CorrectedCmoSampleView stores data needed to create all types of CMO Sample Id. Different Type of samples (eg.
  * Sample and Banked Sample) are converted to CorrectedCmoSampleView to have CMO Sample Id generated.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CorrectedCmoSampleView {
-    private final String id;
+    private String id;
     private String sampleId;
     private String requestId;
     private String patientId;
@@ -18,6 +22,10 @@ public class CorrectedCmoSampleView {
     private Integer counter;
     private String correctedCmoId = "";
     private SampleType sampleType;
+
+    // constructor for JSON
+    public CorrectedCmoSampleView() {
+    }
 
     public CorrectedCmoSampleView(String id) {
         CommonUtils.requireNonNullNorEmpty(id, String.format("Id is not set"));
