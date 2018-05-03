@@ -55,4 +55,9 @@ public class PooledNormalSample extends Sample {
     public void setCorrectedCmoId(String value) {
         setCmoSampleId(value);
     }
+
+    @Override
+    public boolean isPooledNormal() {
+        return true;
+    }
 }
