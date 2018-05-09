@@ -104,7 +104,7 @@ public class Sample {
     private Multimap<String, Protocol> protocols = LinkedListMultimap.create();
     private Request request;
     private String parentRequestId;
-    private String seqName;
+    private List<String> seqNames;
 
     public Sample(String igoId) {
         this(igoId, new ValidSamplePredicate());
@@ -879,12 +879,16 @@ public class Sample {
         return !StringUtils.isEmpty(parentRequestId);
     }
 
-    public String getSeqName() {
-        return seqName;
+    public List<String> getSeqNames() {
+        return seqNames;
     }
 
-    public void setSeqName(String seqName) {
-        this.seqName = seqName;
+    public void setSeqNames(List<String> seqNames) {
+        this.seqNames = seqNames;
+    }
+
+    public void addSeqName(String seqName) {
+        seqNames.add(seqName);
     }
 
     public String getCorrectedCmoSampleId() {

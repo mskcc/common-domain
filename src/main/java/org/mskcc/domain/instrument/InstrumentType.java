@@ -4,6 +4,7 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static java.lang.String.format;
@@ -34,11 +35,6 @@ public enum InstrumentType {
     private static final Map<String, InstrumentType> instrumentTypeToNames = new HashMap<>();
 
     static {
-        instrumentCompatibility.put(InstrumentType.HISEQ, InstrumentType.MISEQ);
-        instrumentCompatibility.put(InstrumentType.MISEQ, InstrumentType.HISEQ);
-    }
-
-    static {
         for (InstrumentType enumValue : values()) {
             nameToEnum.put(enumValue.value, enumValue);
         }
@@ -57,15 +53,45 @@ public enum InstrumentType {
         return nameToEnum.get(name);
     }
 
+    public static void addCompatibility(InstrumentType instrumentType1, InstrumentType instrumentType2) {
+        instrumentCompatibility.put(instrumentType1, instrumentType2);
+        instrumentCompatibility.put(instrumentType2, instrumentType1);
+    }
+
     public static void mapNameToType(String instrumentName, InstrumentType instrumentType) {
         instrumentTypeToNames.put(instrumentName, instrumentType);
     }
 
     public static InstrumentType getInstrumentTypeByName(String instrumentName) {
-        if(!instrumentTypeToNames.containsKey(instrumentName))
+        if (!instrumentTypeToNames.containsKey(instrumentName))
             throw new RuntimeException(String.format("Unsupported instrument name: %s", instrumentName));
 
         return instrumentTypeToNames.get(instrumentName);
+    }
+
+    public static boolean isCompatible(List<InstrumentType> normalInstrumentTypes, List<InstrumentType>
+            tumorInstrumentType) {
+        if (isCompatibleWithAll(normalInstrumentTypes) || isCompatibleWithAll(tumorInstrumentType))
+            return true;
+
+        return hasMatchedSeqType(normalInstrumentTypes, tumorInstrumentType) && hasMatchedSeqType
+                (tumorInstrumentType, normalInstrumentTypes);
+    }
+
+    private static boolean hasMatchedSeqType(List<InstrumentType> instrumentTypes1, List<InstrumentType>
+            instrumentTypes2) {
+        return instrumentTypes1.stream()
+                .allMatch(it -> isCompatible(instrumentTypes2, it));
+    }
+
+    private static boolean isCompatible(List<InstrumentType> instrumentTypes, InstrumentType instrumentType) {
+        return instrumentTypes.contains(instrumentType) || instrumentTypes.stream().anyMatch(i -> ((HashMultimap)
+                instrumentCompatibility).get(instrumentType).contains(i));
+    }
+
+    private static boolean isCompatibleWithAll(List<InstrumentType> instrumentTypes) {
+        return instrumentTypes.size() == 1 && (instrumentTypes.get(0) == ALL_COMPATIBLE_NA_NORMAL ||
+                instrumentTypes.get(0) == DMP_SAMPLE);
     }
 
     public String getValue() {
@@ -75,12 +101,5 @@ public enum InstrumentType {
     @Override
     public String toString() {
         return value;
-    }
-
-    public boolean isCompatibleWith(InstrumentType instrumentType) {
-        if (instrumentType == ALL_COMPATIBLE_NA_NORMAL || instrumentType == DMP_SAMPLE)
-            return true;
-
-        return this == instrumentType || instrumentCompatibility.get(this).contains(instrumentType);
     }
 }

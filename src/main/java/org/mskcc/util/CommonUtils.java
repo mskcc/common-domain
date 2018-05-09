@@ -1,5 +1,7 @@
 package org.mskcc.util;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collector;
@@ -23,6 +25,10 @@ public class CommonUtils {
             runnable.run();
         } catch (NullPointerException omitted) {
         }
+    }
+
+    public static <T> boolean collectionsEqualsIgnoreOrder(Collection<T> c1, Collection<T> c2) {
+        return new HashSet<>(c1).equals(new HashSet<>(c2));
     }
 
     public static class NullOrEmptyException extends RuntimeException {
