@@ -9,9 +9,8 @@ sourceCompatibility = 1.8
 repositories {
     mavenCentral()
     mavenLocal()
-    maven {
-        url "http://bale:8081"
-    }
+    maven { url "${nexusUrlReleases}" }
+    maven { url "${nexusUrlSnapshots}" }
 }
 
 dependencies {
@@ -39,11 +38,11 @@ uploadArchives {
     repositories {
         mavenDeployer {
             repository(
-                    url: "${nexusUrl}/content/repositories/releases") {
+                    url: "${nexusUrlReleases}") {
                 authentication(userName: nexusUsername, password: nexusPassword)
             }
             snapshotRepository(
-                    url: "${nexusUrl}/content/repositories/snapshots") {
+                    url: "${nexusUrlSnapshots}") {
                 authentication(userName: nexusUsername, password: nexusPassword)
             }
         }

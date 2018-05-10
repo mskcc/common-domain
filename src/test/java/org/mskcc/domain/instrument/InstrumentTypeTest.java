@@ -17,7 +17,7 @@ public class InstrumentTypeTest {
     }
 
     @Test
-    public void when_should() throws Exception {
+    public void whenSequencerTypesAreGiven_shouldValidateCompatibility() throws Exception {
         assertIsCompatible(asList(HISEQ), asList(HISEQ), true);
         assertIsCompatible(asList(HISEQ), asList(MISEQ), true);
         assertIsCompatible(asList(MISEQ), asList(MISEQ), true);
@@ -26,6 +26,8 @@ public class InstrumentTypeTest {
         assertIsCompatible(asList(NOVASEQ), asList(BIOANALYZER), false);
         assertIsCompatible(asList(BIOANALYZER), asList(NOVASEQ), false);
         assertIsCompatible(asList(HISEQ), asList(BIOANALYZER), false);
+        assertIsCompatible(asList(NOVASEQ), asList(NOVASEQ), true);
+        assertIsCompatible(asList(BIOANALYZER), asList(BIOANALYZER), true);
 
         assertIsCompatible(asList(HISEQ, NOVASEQ), asList(HISEQ, NOVASEQ), true);
         assertIsCompatible(asList(HISEQ, NOVASEQ), asList(NOVASEQ, HISEQ), true);
@@ -33,9 +35,12 @@ public class InstrumentTypeTest {
 
         assertIsCompatible(asList(HISEQ, NOVASEQ, HISEQ), asList(HISEQ, NOVASEQ), true);
         assertIsCompatible(asList(HISEQ, NOVASEQ, NOVASEQ), asList(MISEQ, NOVASEQ), true);
+        assertIsCompatible(asList(HISEQ, NOVASEQ, NOVASEQ), asList(HISEQ, NOVASEQ), true);
         assertIsCompatible(asList(HISEQ, NOVASEQ, MISEQ), asList(MISEQ, NOVASEQ), true);
 
         assertIsCompatible(asList(HISEQ, NOVASEQ), asList(MISEQ, NOVASEQ), true);
+        assertIsCompatible(asList(HISEQ, NOVASEQ, MISEQ, BIOANALYZER, COVARIS), asList(MISEQ, NOVASEQ, COVARIS,
+                COVARIS, BIOANALYZER), true);
 
     }
 
@@ -44,5 +49,4 @@ public class InstrumentTypeTest {
         boolean isCompatible = isCompatible(normalTypes, tumorTypes);
         assertThat(isCompatible, is(expected));
     }
-
 }

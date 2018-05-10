@@ -4,6 +4,7 @@ import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.Multimap;
 import org.apache.commons.lang3.StringUtils;
 import org.mskcc.domain.*;
+import org.mskcc.domain.instrument.InstrumentType;
 import org.mskcc.util.CommonUtils;
 import org.mskcc.util.Constants;
 
@@ -104,7 +105,7 @@ public class Sample {
     private Multimap<String, Protocol> protocols = LinkedListMultimap.create();
     private Request request;
     private String parentRequestId;
-    private List<String> seqNames;
+    private List<String> seqNames = new ArrayList<>();
 
     public Sample(String igoId) {
         this(igoId, new ValidSamplePredicate());
@@ -922,5 +923,23 @@ public class Sample {
         */
         return runs.values().stream()
                 .anyMatch(r -> r.getSampleLevelQcStatus() != null);
+    }
+
+    public List<InstrumentType> getInstrumentTypes() {
+        if (isNaNormal())
+            return Arrays.asList(InstrumentType.ALL_COMPATIBLE_NA_NORMAL);
+
+        List<InstrumentType> instrumentTypes = new ArrayList<>();
+
+        for (String seqName : seqNames) {
+            InstrumentType instrumentTypeByName = InstrumentType.getInstrumentTypeByName(seqName);
+            instrumentTypes.add(instrumentTypeByName);
+        }
+
+        return instrumentTypes;
+    }
+
+    private boolean isNaNormal() {
+        return Objects.equals(igoId, Constants.NA_LOWER_CASE);
     }
 }
