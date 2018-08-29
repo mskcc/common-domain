@@ -2,6 +2,7 @@ package org.mskcc.domain.sample;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import org.mskcc.domain.Recipe;
 import org.mskcc.util.CommonUtils;
 
 /**
@@ -22,6 +23,7 @@ public class CorrectedCmoSampleView {
     private Integer counter;
     private String correctedCmoId = "";
     private SampleType sampleType;
+    private Recipe recipe;
 
     // constructor for JSON
     public CorrectedCmoSampleView() {
@@ -116,6 +118,14 @@ public class CorrectedCmoSampleView {
         this.sampleType = sampleType;
     }
 
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
+    }
+
     @Override
     public String toString() {
         return "CorrectedCmoSampleView{" +
@@ -129,6 +139,7 @@ public class CorrectedCmoSampleView {
                 ", specimenType=" + specimenType +
                 ", nucleidAcid=" + nucleidAcid +
                 ", correctedCmoId='" + correctedCmoId + '\'' +
+                ", recipe='" + recipe + '\'' +
                 '}';
     }
 }
