@@ -194,11 +194,14 @@ public class Request {
     }
 
     public RequestSpecies getSpecies() {
+        if (projectInfo.containsKey(Constants.ProjectInfo.SPECIES))
+            return RequestSpecies.getSpeciesByValue(projectInfo.get(Constants.ProjectInfo.SPECIES));
         return species;
     }
 
     public void setSpecies(RequestSpecies species) {
         this.species = species;
+        projectInfo.put(Constants.ProjectInfo.SPECIES, species.getValue());
     }
 
     public Set<String> getAmpTypes() {
