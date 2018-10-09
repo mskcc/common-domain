@@ -24,6 +24,7 @@ public enum Recipe {
     IDT_Exome_v1_FP("IDT_Exome_v1_FP"),
     IDT_Exome_v1_IMPACT468("IDT_Exome_v1_IMPACT468"),
     IMMUNO_SEQ("ImmunoSeq"),
+    IMPACT_341("IMPACT341"),
     IMPACT_410("IMPACT410"),
     IMPACT_410_PLUS("IMPACT410+"),
     IMPACT_468("IMPACT468"),
