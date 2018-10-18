@@ -193,10 +193,12 @@ public class Request {
         this.extraReadMeInfo = extraReadMeInfo;
     }
 
+    @Deprecated
     public RequestSpecies getSpecies() {
         return species;
     }
 
+    @Deprecated
     public void setSpecies(RequestSpecies species) {
         this.species = species;
     }
