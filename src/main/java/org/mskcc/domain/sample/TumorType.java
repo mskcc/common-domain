@@ -1,17 +1,14 @@
 package org.mskcc.domain.sample;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TumorType {
     private String code;
 
-    @JsonProperty("tissue_type")
-    private String tissueType;
+    private String tissue;
 
-    @JsonProperty("tumor_type")
-    private String tumorType;
+    private String name;
 
     public TumorType() {
     }
@@ -24,19 +21,28 @@ public class TumorType {
         this.code = code;
     }
 
-    public String getTissueType() {
-        return tissueType;
+    public String getTissue() {
+        return tissue;
     }
 
-    public void setTissueType(String tissueType) {
-        this.tissueType = tissueType;
+    public void setTissue(String tissue) {
+        this.tissue = tissue;
     }
 
-    public String getTumorType() {
-        return tumorType;
+    public String getName() {
+        return name;
     }
 
-    public void setTumorType(String tumorType) {
-        this.tumorType = tumorType;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "TumorType{" +
+                "code='" + code + '\'' +
+                ", tissue='" + tissue + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
