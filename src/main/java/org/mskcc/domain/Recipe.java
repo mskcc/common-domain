@@ -32,6 +32,7 @@ public enum Recipe {
     IWG("IWG"),
     M_IMPACT_V_1("M-IMPACT_v1"),
     METHYL_MINER("MethylMiner"),
+    MSK_ACCESS_V1("MSK-ACCESS_v1"),
     MULTIPLE_OF_THE_ABOVE("(Multiple of the Above)"),
     NANO_STRING("nanoString"),
     QC_DISCARD("QC_Discard"),
