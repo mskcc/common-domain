@@ -16,6 +16,7 @@ public class CorrectedCmoSampleView {
     private String sampleId;
     private String requestId;
     private String patientId;
+    private String normalizedPatientId;
     private SampleClass sampleClass;
     private SampleOrigin sampleOrigin;
     private SpecimenType specimenType;
@@ -32,6 +33,14 @@ public class CorrectedCmoSampleView {
     public CorrectedCmoSampleView(String id) {
         CommonUtils.requireNonNullNorEmpty(id, String.format("Id is not set"));
         this.id = id;
+    }
+
+    public String getNormalizedPatientId() {
+        return normalizedPatientId;
+    }
+
+    public void setNormalizedPatientId(String normalizedPatientId) {
+        this.normalizedPatientId = normalizedPatientId;
     }
 
     public String getCorrectedCmoId() {
