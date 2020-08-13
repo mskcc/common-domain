@@ -5,6 +5,7 @@ import java.util.Map;
 
 public enum QcStatus {
     FAILED("Failed"),
+    IGO_COMPLETE("IGO-Complete"),
     NEW_LIBRARY_NEEDED("New-Library-Needed"),
     PASSED("Passed"),
     RECAPTURE_SAMPLE("Recapture-Sample"),

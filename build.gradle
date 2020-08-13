@@ -1,5 +1,5 @@
 group 'org.mskcc.common'
-version '2.13.1-SNAPSHOT'
+version '2.14'
 
 apply plugin: 'java'
 apply plugin: "maven"
