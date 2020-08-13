@@ -3,6 +3,12 @@ package org.mskcc.domain;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Outdated version of the 'Recipe' picklist in LIMS.
+ *
+ * To see all the current values query the LIMS:
+ * SELECT * FROM picklistentry WHERE PICKLISTNAME='Recipe';
+ */
 public enum Recipe {
     AGILENT_V_4_51_MB_HUMAN("Agilent_v4_51MB_Human"),
     AMPLI_SEQ("AmpliSeq"),
@@ -28,6 +34,7 @@ public enum Recipe {
     IMPACT_410("IMPACT410"),
     IMPACT_410_PLUS("IMPACT410+"),
     IMPACT_468("IMPACT468"),
+    IMPACT_505("IMPACT505"),
     IN_DROP_SEQ("InDropSeq"),
     IWG("IWG"),
     M_IMPACT_V_1("M-IMPACT_v1"),
