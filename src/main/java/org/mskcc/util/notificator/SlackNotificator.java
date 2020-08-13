@@ -1,11 +1,12 @@
 package org.mskcc.util.notificator;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.mskcc.util.http.CurlCaller;
 import org.mskcc.util.http.ProcessBuilderCurlCaller;
 
 public class SlackNotificator implements Notificator {
-    private static final Logger LOGGER = Logger.getLogger(SlackNotificator.class);
+    private static final Log LOGGER = LogFactory.getLog(SlackNotificator.class);
 
     private static final String SLACK_RESPONSE_SUCCESS = "ok";
     private final String webhookUrl;

@@ -1,6 +1,7 @@
 package org.mskcc.util.rest;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.MediaType;
@@ -15,7 +16,7 @@ import java.nio.charset.StandardCharsets;
 
 @Component
 public class LoggingClientHttpRequestInterceptor implements ClientHttpRequestInterceptor {
-    private static final Logger LOGGER = Logger.getLogger(LoggingClientHttpRequestInterceptor.class);
+    private static final Log LOGGER = LogFactory.getLog(LoggingClientHttpRequestInterceptor.class);
 
     private volatile boolean loggedMissingBuffering;
 

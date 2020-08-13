@@ -1,11 +1,12 @@
 package org.mskcc.domain.sample;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.util.function.Predicate;
 
 class ValidSamplePredicate implements Predicate<Sample> {
-    private static final Logger LOGGER = Logger.getLogger(ValidSamplePredicate.class);
+    private static final Log LOGGER = LogFactory.getLog(ValidSamplePredicate.class);
 
     @Override
     public boolean test(Sample sample) {
