@@ -336,6 +336,10 @@ public class Sample {
         fields.put(RECIPE, value);
     }
 
+    public String getBaitVersion() {
+        return (String) get(Constants.BAIT_VERSION);
+    }
+
     public Boolean getIsControl() {
         return (Boolean) fields.get(IS_CONTROL);
     }

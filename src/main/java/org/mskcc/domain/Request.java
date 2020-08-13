@@ -256,6 +256,11 @@ public class Request {
         return samples.get(igoNormalId);
     }
 
+    public Sample putPooledNormalIfAbsent(PooledNormalSample pooledNormalSample) {
+        samples.putIfAbsent(pooledNormalSample.getIgoId(), pooledNormalSample);
+        return samples.get(pooledNormalSample.getIgoId());
+    }
+
 
     public Optional<Sample> getSampleByCorrectedCmoId(String cmoSampleId) {
         Optional<Sample> sample = samples.values().stream()

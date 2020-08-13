@@ -15,6 +15,7 @@ public enum SampleClass {
     OTHER("Other"),
     PRIMARY("Primary"),
     RECURRENCE("Recurrence"),
+    TUMOR("Tumor"),
     UNKNOWN_TUMOR("Unknown Tumor");
 
     private static final Map<String, SampleClass> valueToSampleClass = new HashMap<>();
