@@ -18,7 +18,7 @@ dependencies {
     compile 'com.velox.internalproducts:sapioutils:15.0.0-LIMS10.6.1'
 
     compile group: 'javax.mail', name: 'mail', version: '1.4.1'
-    compile group: 'javax.persistence', name: 'persistence-api', version: '1.0.2'
+    compile group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
 
     compile group: 'com.google.guava', name: 'guava', version: '22.0'
     //compile group: 'log4j', name: 'log4j', version: '1.2.16'

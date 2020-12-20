@@ -36,4 +36,8 @@ public class CommonUtils {
             super(message);
         }
     }
+
+    public static boolean isPooledNormal(String sampleId) {
+        return sampleId.startsWith("CTRL-") || sampleId.contains(Constants.POOLNORMAL);
+    }
 }
