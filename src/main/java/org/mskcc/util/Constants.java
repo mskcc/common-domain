@@ -1,12 +1,6 @@
 package org.mskcc.util;
 
 public class Constants {
-    public static final String POOLING_OF_SAMPLE_LIBRARIES_FOR_SEQUENCING = "Pooling of Sample Libraries for Sequencing";
-    public static final String CAPTURE_FROM_KAPA_LIBRARY1 = "Capture from KAPA Library";
-    public static final String LIBRARY_POOL_QUALITY_CONTROL1 = "Library/Pool Quality Control";
-    public static final String WHOLE_EXOME_CAPTURE = "Whole Exome Capture";
-    public static final String PRE_SEQUENCING_POOLING_OF_LIBRARIES1 = "Pre-Sequencing Pooling of Libraries";
-    public static final String IMPACT_HEME_PACT_OR_CUSTOM_CAPTURE = "IMPACT/HemePACT or Custom Capture";
     public static final int MAX_HEADER_SIZE = 26;
     public static final int MINIMUM_NUMBER_OF_READS = 1000000;
     public static final String ASSAY = "Assay";
@@ -15,6 +9,7 @@ public class Constants {
     public static final String BARCODE_ID = "BARCODE_ID";
     public static final String BARCODE_INDEX = "BARCODE_INDEX";
     public static final String CAPTURE_BAIT_SET = "CAPTURE_BAIT_SET";
+    public static final String CAPTURE_FROM_KAPA_LIBRARY1 = "Capture from KAPA Library";
     public static final String CAPTURE_INPUT = "CAPTURE_INPUT";
     public static final String CMO_PATIENT_ID = "CMO_PATIENT_ID";
     public static final String CMO_SAMPLE_ID = "CMO_SAMPLE_ID";
@@ -23,6 +18,8 @@ public class Constants {
     public static final String DATA_CLINICAL = "data_clinical";
     public static final String DEV_LOGGER = "devLogger";
     public static final String DEV_PROFILE = "dev";
+    public static final String DNA_ABBREV = "d";
+    public static final String DNA_LIBRARY = "DNA Library";
     public static final String EMPTY = "#EMPTY";
     public static final String ERROR = "ERROR";
     public static final String EXAMPLE = "Example";
@@ -37,11 +34,13 @@ public class Constants {
     public static final String HUMAN_ABREV = "b37";
     public static final String IGO_ID = "IGO_ID";
     public static final String IGO_PROFILE = "igo";
+    public static final String IMPACT_HEME_PACT_OR_CUSTOM_CAPTURE = "IMPACT/HemePACT or Custom Capture";
     public static final String INCLUDE_RUN_ID = "INCLUDE_RUN_ID";
     public static final String INCORRECT = "Incorrect";
     public static final String INNOVATION_PROJECT_ID = "05500";
     public static final String INVESTIGATOR_PATIENT_ID = "INVESTIGATOR_PATIENT_ID";
     public static final String INVESTIGATOR_SAMPLE_ID = "INVESTIGATOR_SAMPLE_ID";
+    public static final String LIBRARY_POOL_QUALITY_CONTROL1 = "Library/Pool Quality Control";
     public static final String LOG_FILE_PATH = "logs";
     public static final String LOG_FILE_PREFIX = "Log_";
     public static final String MANIFEST_SAMPLE_ID = "MANIFEST_SAMPLE_ID";
@@ -65,16 +64,22 @@ public class Constants {
     public static final String PATIENT = "patient";
     public static final String PM_LOGGER = "pmLogger";
     public static final String POOL_PREFIX = "Pool-";
+    public static final String POOLEDNORMAL = "POOLEDNORMAL";
+    public static final String POOLING_OF_SAMPLE_LIBRARIES_FOR_SEQUENCING = "Pooling of Sample Libraries for " +
+            "Sequencing";
     public static final String POOLNORMAL = "POOLNORMAL";
+    public static final String PRE_SEQUENCING_POOLING_OF_LIBRARIES1 = "Pre-Sequencing Pooling of Libraries";
     public static final String PROD_PROFILE = "prod";
     public static final String PROJECT_ID = "ProjectID";
     public static final String PROJECT_PREFIX = "Proj_";
     public static final String READ_ME = "ReadMe";
+    public static final String RECEIVED = "Received";
     public static final String RECIPE = "recipe";
     public static final String REQ_ID = "REQ_ID";
     public static final String REQUEST_05500 = "05500";
     public static final String REQUEST_NAME = "RequestName";
     public static final String REQUIRED_ADDITIONAL_READS = "Required-Additional-Reads";
+    public static final String RNA_ABBREV = "r";
     public static final String RUN_INFO_PATH = "argumentsInfo.txt";
     public static final String SAMPLE_CLASS = "SAMPLE_CLASS";
     public static final String SAMPLE_KEY = "SampleKey";
@@ -94,10 +99,8 @@ public class Constants {
     public static final String UNDER_REVIEW = "Under-Review";
     public static final String UNKNOWN = "Unknown";
     public static final String WES = "WES";
-    public static final String DNA_LIBRARY = "DNA Library";
-    public static final String RECEIVED = "Received";
-    public static final String DNA_ABBREV = "d";
-    public static final String RNA_ABBREV = "r";
+    public static final String WHOLE_EXOME_CAPTURE = "Whole Exome Capture";
+    public static final String MRN_REDACTED = "MRN_REDACTED";
 
     public static class Manifest {
         public static final String SAMPLE_INFO = "SampleInfo";
